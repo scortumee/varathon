@@ -1,0 +1,20 @@
+{
+  "starterDeck":[
+    {"name": "Dark Legion" },
+    {"name": "Joey"},
+    {"name": "Kaiba"},
+    {"name": "Link Strike"},
+    {"name": "Pegasus"},
+    {"name": "Saber Force"},
+    {"name": "Yugi"},
+    {"name": "Yuya"}
+  ],
+  "boosterPack": [
+    {"name": "Dark Savior" },
+    {"name": "Extreme Force"},
+    {"name": "Flame of Destruction"},
+    {"name": "Legendary Duelist: Ancient Millennium"},
+    {"name": "Spirit Warriors"},
+    {"name": "Star Pack Vrain"}
+  ]
+}

@@ -1,0 +1,57 @@
+.btn {
+    border: none;
+    background-color: #01B2FE;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    position: relative;
+    top: -6px;
+    color: white;
+    margin-right: 5px;
+}
+
+.btn2 {
+    border: none;
+    /*background-color: #CAC9CA;*/
+    background-color: #3e85d1;
+    padding: 16px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    margin-right: 5px;
+}
+
+.btn2Clicked {
+    border: none;
+    /*background-color: #CAC9CA;*/
+    background-color: #b1bdd1;
+    padding: 16px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    margin-right: 5px;
+}
+
+.btn3 {
+    border: none;
+    background-color: #3e85d1;
+    padding: 16px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    display: inline-block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    color: white;
+    margin-right: 5px;
+}
+
+.btn:hover {background: black;}
+.btn2:hover {background: black;}
+.btn3:hover {background: black;}
+
+.default {color: white;}

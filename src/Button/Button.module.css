@@ -1,0 +1,60 @@
+.Button {
+  border-style: none;
+  background-color: transparent;
+}
+
+.Button:focus {
+  outline: none;
+}
+
+.Button:hover {
+  color: black;
+  cursor: pointer;
+  transform: scale(2, 2);
+}
+
+.triangle {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  /*
+  border-style: solid;
+  border-width: 103.9px 60px 0 60px;
+  border-color: #3e85d1 transparent transparent transparent;*/
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  clip-path: polygon(50% 74%, 100% 100%, 50% 1%, 0 100%);
+}
+
+.triangleRight {
+  border-style: solid;
+  border-width: 60px 0 60px 103.9px;
+  border-color: transparent transparent transparent #f442a7;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  /*clip-path: polygon(0 0, 26% 50%, 0 100%, 100% 46%);*/
+}
+
+.triangleLeft {
+  width: 0;
+  height: 0;
+
+  border-style: solid;
+  border-width: 60px 103.9px 60px 0;
+  border-color: transparent #f442a7 transparent transparent;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+}
+
+/*.triangle:hover {
+  border-color: #f442a7 transparent transparent  transparent;
+}*/
+
+/*
+padding: 16px;
+background-color: green;
+font: inherit;
+color: white;
+cursor: pointer;
+
+border-width: 0px 100px 173.2px 100px;
+border-color: transparent transparent #3e85d1 transparent;
+border-color: transparent transparent #f442a7 transparent;
+*/
