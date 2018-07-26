@@ -31,7 +31,7 @@ class App extends PureComponent {
   componentDidMount() {
     //this.props.setCategory(deckNames.boosterPack);
     this.props.renderInitial(1);
-    this.props.renderInitial(deckNames.boosterPack.length);
+    this.props.renderInitial(deckNames.starterDeck.length);
   }
 
   componentWillUnmount() {

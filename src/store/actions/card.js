@@ -167,8 +167,8 @@ export const fetchForReserve = (deckValue) => {
   return (dispatch,getState) => {
     const {deckIndex} = getState().card;
     let baseImages=[];
-    let deckName = deckNames.boosterPack[deckIndex+deckValue].name;
-    let categoryName = "Booster Pack";
+    let deckName = deckNames.starterDeck[deckIndex+deckValue].name;
+    let categoryName = "Starter Deck";
 
     axios.get(`/${categoryName}/${deckName}.json`)
       .then(response => {
@@ -189,7 +189,7 @@ export const fetchForReserve = (deckValue) => {
         if(deckValue === 1) {
           dispatch(storeNextReserve(baseImages,response.data.cards.length));
         }
-        else if(deckValue === -1 || deckValue === deckNames.boosterPack.length || deckValue===deckNames.boosterPack.length-1){
+        else if(deckValue === -1 || deckValue === deckNames.starterDeck.length || deckValue===deckNames.starterDeck.length-1){
           console.log(response.data.deck.name);
           dispatch(storePrevReserve(baseImages,response.data.cards.length));
         }
@@ -206,7 +206,7 @@ export const switchNext = () => {
     const {nextReserve, nextLength} = getState().cardReserve;
     let {deckIndex} = getState().card;
 
-    if(deckIndex === deckNames.boosterPack.length-2 || deckIndex === deckNames.boosterPack.length-1) {
+    if(deckIndex === deckNames.starterDeck.length-2 || deckIndex === deckNames.starterDeck.length-1) {
       deckIndex = -2;
     }
 
@@ -232,10 +232,10 @@ export const switchPrev = () => {
     let deckValue=-1;
 
     if(deckIndex === -1 || deckIndex === 0) {
-      deckIndex = deckNames.boosterPack.length;
+      deckIndex = deckNames.starterDeck.length;
     }
     else if(deckIndex === 1) {
-      deckValue = deckNames.boosterPack.length-1;
+      deckValue = deckNames.starterDeck.length-1;
     }
 
     if(getState().card.mainIndex === -1) {
