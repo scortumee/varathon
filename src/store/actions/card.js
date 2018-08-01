@@ -67,7 +67,7 @@ export const updateNext = () => {
         dispatch(clearAndContinue(-1, getState().card.index));
       }
       else {
-        dispatch(goForward(getState().cardReserve.currentReserve));
+        dispatch(goForward(getState().button.currentReserve));
       }
     }
 
@@ -117,7 +117,7 @@ export const updatePrev = () => {
         //setTimeout( ()=> {dispatch(hidePopUp());}, 1500);
       }
       else{
-        dispatch(goBackward(getState().cardReserve.currentReserve));
+        dispatch(goBackward(getState().button.currentReserve));
       }
     }
   };
@@ -166,9 +166,11 @@ export const storePrevReserve = (value, length) => {
 export const fetchForReserve = (deckValue) => {
   return (dispatch,getState) => {
     const {deckIndex} = getState().card;
+    const {title,list} = getState().cardReserve.currentCategory;
+
     let baseImages=[];
-    let deckName = deckNames.starterDeck[deckIndex+deckValue].name;
-    let categoryName = "Starter Deck";
+    let deckName = list[deckIndex+deckValue].name;
+    let categoryName = title;
 
     axios.get(`/${categoryName}/${deckName}.json`)
       .then(response => {
@@ -189,9 +191,10 @@ export const fetchForReserve = (deckValue) => {
         if(deckValue === 1) {
           dispatch(storeNextReserve(baseImages,response.data.cards.length));
         }
-        else if(deckValue === -1 || deckValue === deckNames.starterDeck.length || deckValue===deckNames.starterDeck.length-1){
+        else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1){
           console.log(response.data.deck.name);
           dispatch(storePrevReserve(baseImages,response.data.cards.length));
+          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 250);
         }
       })
 
@@ -203,10 +206,11 @@ export const fetchForReserve = (deckValue) => {
 
 export const switchNext = () => {
   return (dispatch,getState) => {
-    const {nextReserve, nextLength} = getState().cardReserve;
+    const {nextReserve, nextLength, currentCategory} = getState().cardReserve;
+
     let {deckIndex} = getState().card;
 
-    if(deckIndex === deckNames.starterDeck.length-2 || deckIndex === deckNames.starterDeck.length-1) {
+    if(deckIndex === currentCategory.list.length-2 || deckIndex === currentCategory.list.length-1) {
       deckIndex = -2;
     }
 
@@ -214,7 +218,7 @@ export const switchNext = () => {
       // do nothing
     }
     else {
-      dispatch(storePrevReserve(getState().cardReserve.currentReserve, getState().card.mainIndex));
+      dispatch(storePrevReserve(getState().button.currentReserve, getState().card.mainIndex));
     }
 
     //dispatch(loadNext(nextReserve, nextLength, deckIndex+1));
@@ -227,22 +231,22 @@ export const switchNext = () => {
 
 export const switchPrev = () => {
   return (dispatch,getState) => {
-    const {prevReserve, prevLength} = getState().cardReserve;
+    const {prevReserve, prevLength, currentCategory} = getState().cardReserve;
     let {deckIndex} = getState().card;
     let deckValue=-1;
 
     if(deckIndex === -1 || deckIndex === 0) {
-      deckIndex = deckNames.starterDeck.length;
+      deckIndex = currentCategory.list.length;
     }
     else if(deckIndex === 1) {
-      deckValue = deckNames.starterDeck.length-1;
+      deckValue = currentCategory.list.length-1;
     }
 
     if(getState().card.mainIndex === -1) {
       // do nothing
     }
     else {
-      dispatch(storeNextReserve(getState().cardReserve.currentReserve,getState().card.mainIndex));
+      dispatch(storeNextReserve(getState().button.currentReserve,getState().card.mainIndex));
     }
     //dispatch(loadNext(prevReserve, prevLength, deckIndex-1));
     dispatch(loadCurrent(prevReserve));

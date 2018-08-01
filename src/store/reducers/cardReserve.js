@@ -5,7 +5,10 @@ const initialState = {
   nextReserve:0,
   prevLength:0,
   nextLength:0,
-  currentCategory:0,
+
+  currentCategory:{
+    title:0, list:0
+  },
   currentReserve:0
 }
 
@@ -28,18 +31,22 @@ const reducer = (state = initialState, action) => {
     }
 
     case actionTypes.SET_CATEGORY: {
+      console.log(action.title,action.list);
       return {
         ...state,
-        currentCategory: action.value
+        currentCategory: {
+          title: action.title,
+          list: action.list
+        }
       };
     }
 
-    case actionTypes.LOAD_CURRENT: {
+    /*case actionTypes.LOAD_CURRENT: {
       return {
         ...state,
         currentReserve: action.value
       };
-    }
+    }*/
     default:
       return state;
   }

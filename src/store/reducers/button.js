@@ -1,8 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  speed: 500,
-  speed1: 500
+  currentReserve:0
 }
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +12,12 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         speed: state.speed1 + moreSpeed
+      };
+    }
+
+    case actionTypes.LOAD_CURRENT: {
+      return {
+        currentReserve: action.value
       };
     }
     default:

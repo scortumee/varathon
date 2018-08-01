@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   background-color: #F0F0F0;
+  /*background: linear-gradient(180deg, #f5f7fa, #c3cfe2);*/
   align-items: center;
   justify-content: space-between;
 }

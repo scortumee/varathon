@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  showPopup: false,
+  showPopup: true,
   popWallpaper: 0
 }
 

@@ -1,6 +1,6 @@
-.btn {
+.tier2 {
     border: none;
-    background-color: #01B2FE;
+    background: linear-gradient(180deg, #434343, #000000);
     padding: 14px 28px;
     font-size: 20px;
     cursor: pointer;
@@ -12,10 +12,15 @@
     margin-right: 5px;
 }
 
-.btn2 {
+.scrollMenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.mainButton {
     border: none;
-    /*background-color: #CAC9CA;*/
-    background-color: #3e85d1;
+    background-color: black;
+    background: linear-gradient(180deg, #434343, #000000);
     padding: 16px 30px;
     font-size: 24px;
     cursor: pointer;
@@ -25,10 +30,12 @@
     margin-right: 5px;
 }
 
-.btn2Clicked {
+.mainClicked {
     border: none;
     /*background-color: #CAC9CA;*/
     background-color: #b1bdd1;
+    /*background: linear-gradient(180deg, #868f96, #596164);*/
+    background: linear-gradient(180deg, #42275a, #734b6d);
     padding: 16px 30px;
     font-size: 24px;
     cursor: pointer;
@@ -38,9 +45,9 @@
     margin-right: 5px;
 }
 
-.btn3 {
+.tier1 {
     border: none;
-    background-color: #3e85d1;
+    background: linear-gradient(180deg, #434343, #000000);
     padding: 16px 30px;
     font-size: 24px;
     cursor: pointer;
@@ -51,7 +58,7 @@
 }
 
 .btn:hover {background: black;}
-.btn2:hover {background: black;}
-.btn3:hover {background: black;}
+.mainButton:hover {background: black;}
+.tier1:hover {background: black;}
 
 .default {color: white;}

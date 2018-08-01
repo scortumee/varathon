@@ -1,6 +1,11 @@
 import React, { Fragment, Component } from 'react';
+import { connect } from 'react-redux';
+import * as actionCreators from '../store/actions/index';
 import classes from './Menus.module.css';
 import FlexView from 'react-flexview';
+import SubMenu from './SubMenu';
+
+import deckNames from '../assets/deckNames';
 
 class Menus extends Component {
   constructor( props ) {
@@ -8,7 +13,7 @@ class Menus extends Component {
     this.state = {
       showTier1: false,
       showTier2: false,
-      tierStyle1: classes.btn2
+      mainStyle: classes.mainButton
     };
   }
 
@@ -16,11 +21,11 @@ class Menus extends Component {
     if(this.state.showTier1) {
       this.setState({showTier1: false, showTier2: false});
 
-      this.setState({tierStyle1: classes.btn2})
+      this.setState({mainStyle: classes.mainButton})
     }
     else {
       this.setState({showTier1: true, });
-      this.setState({tierStyle1: classes.btn2Clicked})
+      this.setState({mainStyle: classes.mainClicked})
     }
   }
 
@@ -35,23 +40,42 @@ class Menus extends Component {
     }
   }
 
+  loadCategory = (categoryName, list) => {
+    this.props.showPopUp();
+    this.props.setCategory(categoryName,list)
+    this.clicked2();
+  }
+
   render() {
+    let subMenus = null;
+
+    if(this.state.showTier2) {
+      subMenus = deckNames.boosterPack.map(( deck, index) => {
+          return <SubMenu
+                    name={deck.name}
+                 />
+      });
+    }
 
     return (
-      <div>
+      <div className={classes.scrollMenu}>
         <button
-          className={this.state.tierStyle1}
+          className={this.state.mainStyle}
           onClick ={this.clicked1}
         >Yu-Gi-Oh</button>
         {this.state.showTier1 ?
           <Fragment>
-            <button className={classes.btn3}>
-              Booster Pack
+            <button
+              onClick={() => this.loadCategory("Booster Pack", deckNames.boosterPack)}
+              className={classes.tier1}> Booster Pack
             </button>
-            <button className={classes.btn3}>
-              Starter Deck
+            <button
+              onClick={() => this.loadCategory("Starter Deck", deckNames.starterDeck)}
+              className={classes.tier1}> Starter Deck
             </button>
-            <button className={classes.btn3}>
+            <button
+              onClick={() => this.loadCategory("Structure Deck", deckNames.structureDeck)}
+              className={classes.tier1}>
               Structure Deck
             </button>
           </Fragment>
@@ -60,15 +84,7 @@ class Menus extends Component {
 
         {this.state.showTier2 ?
           <Fragment>
-            <button className={classes.btn}>
-              Booster Pack
-            </button>
-            <button className={classes.btn}>
-              Starter Deck
-            </button>
-            <button className={classes.btn}>
-              Structure Deck
-            </button>
+            {subMenus}
           </Fragment>
           : null
         }
@@ -77,12 +93,12 @@ class Menus extends Component {
   }
 }
 
-export default Menus;
+const mapDispatchToProps = dispatch => {
+    return {
+      setCategory: (title,list) => dispatch(actionCreators.setCategory(title,list)),
+      showPopUp: () => dispatch(actionCreators.showPopUp())
+    };
+};
 
 
-  /*  <button className={classes.btn3}>Yu-Gi-Oh</button>
-    <button className={classes.btn}>Booster Pack</button>
-    <button className={classes.btn}>Starter Deck</button>
-    <button className={classes.btn}>Structure Deck</button>
-
-*/
+export default connect(null, mapDispatchToProps)(Menus);

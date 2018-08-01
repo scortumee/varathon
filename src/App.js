@@ -11,10 +11,7 @@ import {encode} from 'node-base64-image';
 import Button from './Button/Button';
 import Popup from './Popup/Popup';
 
-import { AwesomeButton } from 'react-awesome-button';
-import 'react-awesome-button/dist/styles.css';
-
-import DragScroll from 'react-dragscroll';
+import { CircleLoader } from 'react-spinners';
 import Menu, {SubMenu, MenuItem } from 'rc-menu';
 import Menus from './Menus/Menus';
 import deckNames from './assets/deckNames';
@@ -29,9 +26,9 @@ class App extends PureComponent {
     showPopup: false
   }
   componentDidMount() {
-    //this.props.setCategory(deckNames.boosterPack);
-    this.props.renderInitial(1);
-    this.props.renderInitial(deckNames.starterDeck.length);
+    this.props.setCategory("Booster Pack", deckNames.boosterPack);
+    //this.props.renderInitial(1);
+    //this.props.renderInitial(deckNames.starterDeck.length);
   }
 
   componentWillUnmount() {
@@ -113,22 +110,25 @@ class App extends PureComponent {
           <Card image = {this.props.pics[5]}/>
         </FlexView>
 
-        <Button
-          startAnimeFwd = {this.startAnimeFwd}
-          stopAnime = {this.stopAnime}
-          startAnimeBwd={this.startAnimeBwd}
-        />
-
-        <Menus>
-
-        </Menus>
         {this.props.showPopup ?
-          <Popup
-            image = {this.props.popUpImage}
-            text = {"HELLO"}
+          <FlexView hAlignContent='center'>
+            <CircleLoader
+              sizeUnit={"px"}
+              size={100}
+              color={'black'}
+              loading={true}
+            />
+          </FlexView>
+          :
+          <Button
+            startAnimeFwd = {this.startAnimeFwd}
+            stopAnime = {this.stopAnime}
+            startAnimeBwd={this.startAnimeBwd}
           />
-          : null
+
         }
+
+        <Menus/>
       </div>
 
     );
@@ -149,7 +149,7 @@ const mapDispatchToProps = dispatch => {
     renderInitial: (data) => dispatch(actionCreators.fetchForReserve(data)),
     renderFwd: () => dispatch(actionCreators.updateNext()),
     renderBwd: () => dispatch(actionCreators.updatePrev()),
-    setCategory: (data) => dispatch(actionCreators.setCategory(data))
+    setCategory: (title, list) => dispatch(actionCreators.setCategory(title, list))
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -137,4 +137,12 @@
                 });
             };
           };
-          */          
+          */
+
+          {this.props.showPopup ?
+            <RingLoader
+              color={'#123abc'}
+              loading={true}
+            />
+            : null
+          }

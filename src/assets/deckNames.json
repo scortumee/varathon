@@ -16,5 +16,11 @@
     {"name": "Legendary Duelist: Ancient Millennium"},
     {"name": "Spirit Warriors"},
     {"name": "Star Pack Vrain"}
+  ],
+  "structureDeck": [
+    {"name": "Cyberse Link" },
+    {"name": "Lair of Darkness"},
+    {"name": "Pendulum Domination"},
+    {"name": "Wave of Light"}
   ]
 }
