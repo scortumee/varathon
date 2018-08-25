@@ -114,15 +114,6 @@ const reducer = (state = initialState, action) => {
       };
     }
 
-    case actionTypes.LOAD_NEXT: {
-      return {
-        ...state,
-        mainIndex: action.mainIndex,
-        deckIndex: action.deckIndex,
-        images: action.value
-      }
-    }
-
     case actionTypes.UPDATE_INDEX: {
       return {
         ...state,

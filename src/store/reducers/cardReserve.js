@@ -8,8 +8,7 @@ const initialState = {
 
   currentCategory:{
     title:0, list:0
-  },
-  currentReserve:0
+  }
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,7 +30,6 @@ const reducer = (state = initialState, action) => {
     }
 
     case actionTypes.SET_CATEGORY: {
-      console.log(action.title,action.list);
       return {
         ...state,
         currentCategory: {

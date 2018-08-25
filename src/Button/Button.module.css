@@ -16,11 +16,12 @@
 .triangle {
   width: 100px;
   height: 100px;
+  margin-bottom: 8px;
   background-color: black;
-  background: linear-gradient(180deg, #667eea, #764ba2);
+  background: linear-gradient(180deg, #aa076b, #61045f);
   /*
   border-style: solid;
-  border-width: 103.9px 60px 0 60px;
+  border-width: 103.9px 60px 0 60px; #667eea, #764ba2
   border-color: #3e85d1 transparent transparent transparent;*/
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
   clip-path: polygon(50% 74%, 100% 100%, 50% 1%, 0 100%);
@@ -28,7 +29,7 @@
 
 .triangleRight {
   border-style: solid;
-  border-width: 60px 0 60px 103.9px;
+  border-width: 50px 0 50px 86.6px;
   border-color: transparent transparent transparent black ;
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
   /*clip-path: polygon(0 0, 26% 50%, 0 100%, 100% 46%); #f442a7*/
@@ -39,11 +40,68 @@
   height: 0;
 
   border-style: solid;
-  border-width: 60px 103.9px 60px 0;
+  border-width: 50px 86.6px 50px 0;
   border-color: transparent black transparent transparent;
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
 }
 
+.loadCircle {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  text-align: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+}
+
+.circle {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #cccfd1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.circle:hover {
+  background-color: green;
+}
+
+.circleCollided {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: green;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.rlittleTriangle {
+  width: 25px;
+  height: 25px;
+  background-color: #cccfd1;
+  margin-left: 10px;
+  margin-right: 10px;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
+.llittleTriangle {
+  width: 25px;
+  height: 25px;
+  background-color: #cccfd1;
+  margin-left: 10px;
+  margin-right: 10px;
+  clip-path: polygon(0 50%, 100% 100%, 100% 0);
+}
+.diamond {
+  width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  background-color: transparent;
+  /*clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);*/
+}
 /*.triangle:hover {
   border-color: #f442a7 transparent transparent  transparent;
 }*/

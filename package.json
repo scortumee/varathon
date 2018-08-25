@@ -5,18 +5,22 @@
   "dependencies": {
     "axios": "^0.18.0",
     "immutability-helper": "^2.7.0",
+    "konva": "^2.2.1",
     "node-base64-image": "^1.0.5",
     "radium": "^0.24.0",
     "rc-menu": "^7.1.0",
     "react": "^16.4.0",
+    "react-circular-progressbar": "^1.0.0",
     "react-dom": "^16.4.0",
     "react-draggable": "^3.0.5",
     "react-flexview": "^3.0.2",
+    "react-konva": "^1.7.12",
     "react-redux": "^5.0.7",
     "react-scripts-cssmodules": "^1.1.10",
     "react-spinners": "^0.3.3",
     "redux": "^4.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "sat": "^0.7.1"
   },
   "scripts": {
     "start": "react-scripts start",

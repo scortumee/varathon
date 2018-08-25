@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import * as actionCreators from './store/actions/index';
 
@@ -16,7 +16,7 @@ import Menu, {SubMenu, MenuItem } from 'rc-menu';
 import Menus from './Menus/Menus';
 import deckNames from './assets/deckNames';
 
-class App extends PureComponent {
+class App extends Component {
   state = {
     interval1:0,
     interval2:0,
@@ -95,13 +95,15 @@ class App extends PureComponent {
   render() {
     return (
       <div className={classes.App}>
-        <FlexView >
+        <div>
+        <FlexView>
           <Card image = {this.props.pics[0]}/>
           <Card image = {this.props.pics[1]}/>
           <Card image = {this.props.pics[2]}/>
           <Card image = {this.props.pics[3]}/>
           <Card image = {this.props.pics[4]}/>
         </FlexView>
+
         <FlexView>
           <Card image = {this.props.pics[9]}/>
           <Card image = {this.props.pics[8]}/>
@@ -109,7 +111,9 @@ class App extends PureComponent {
           <Card image = {this.props.pics[6]}/>
           <Card image = {this.props.pics[5]}/>
         </FlexView>
+        </div>
 
+        <div>
         {this.props.showPopup ?
           <FlexView hAlignContent='center'>
             <CircleLoader
@@ -120,17 +124,23 @@ class App extends PureComponent {
             />
           </FlexView>
           :
-          <Button
-            startAnimeFwd = {this.startAnimeFwd}
-            stopAnime = {this.stopAnime}
-            startAnimeBwd={this.startAnimeBwd}
-          />
-
+          <FlexView hAlignContent='center'>
+            <Button
+              startAnimeFwd = {this.startAnimeFwd}
+              stopAnime = {this.stopAnime}
+              startAnimeBwd={this.startAnimeBwd}
+            />
+          </FlexView>
         }
 
-        <Menus/>
+        <Menus
+          currentX={this.props.currentIndex}
+          totalX={this.props.mainIndex}
+          deckIndex={this.props.deckIndex}
+          render={this.props.render}
+        />
+        </div>
       </div>
-
     );
   }
 }
@@ -140,7 +150,11 @@ const mapStateToProps = state => {
     pics: state.card.pic,
     showPopup: state.popup.showPopup,
     popUpImage: state.popup.popWallpaper,
-    category: state.cardReserve.currentCategory
+    category: state.cardReserve.currentCategory,
+    currentIndex: state.card.index1,
+    mainIndex: state.card.mainIndex,
+    deckIndex: state.card.deckIndex,
+    render: state.card.render
   };
 };
 

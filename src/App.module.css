@@ -1,11 +1,21 @@
 .App {
   text-align: center;
+  display: flex;
   background-color: #F0F0F0;
-  /*background: linear-gradient(180deg, #f5f7fa, #c3cfe2);*/
-  align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+  /*background: linear-gradient(180deg, #f5f7fa, #c3cfe2);*/
+  /*align-items: center;*/
 }
 
+.redCircle {
+  width: 15px;
+	height: 15px;
+	/*background: red;*/
+  background: linear-gradient(180deg, #eb3349, #f45c43);
+  border-radius: 50%;
+}
 /*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;

@@ -146,3 +146,27 @@
             />
             : null
           }
+
+                <FlexView className={classes.redCircle}/>
+
+
+                  <button className={classes.Button}>
+                    <div className={this.state.triangleStyle}/>
+                  </button>
+
+
+
+                  <div>
+                    {this.props.deckName}
+                  </div>
+                  bounds={{top:-200, bottom: 200, left:-300, right: 300}}
+                  <CircularProgressbar  initialAnimation={false}   styles={{
+                    path: {
+                      transform: 'rotate(0deg)',
+                      transformOrigin: 'center center',
+                    },
+                  }} percentage={100*(this.props.index1/this.props.mainIndex)} />
+
+                  right:pointX+this.point.getBoundingClientRect().width-this.state.buttonLoc.x
+
+                  top:pointY - this.state.buttonLoc.y-15, bottom: pointY-this.state.buttonLoc.y

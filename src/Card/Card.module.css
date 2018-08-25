@@ -1,6 +1,5 @@
 .Card {
   width: 100%;
-  height: 100%;
   text-align: center;
   margin: 16px auto;
 }
@@ -9,7 +8,7 @@
   filter: brightness(0.6);
 }
 
-@media (min-width: 200px) {
+@media (min-width: 800px) {
   .Card {
     width: 200px;
   }

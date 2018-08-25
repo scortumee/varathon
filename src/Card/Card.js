@@ -21,7 +21,7 @@ class Card extends PureComponent {
 
   }
   */
-  
+
   /*shouldComponentUpdate (nextProps, nextState) {
     console.log('Hey', this.state, nextState);
     return this.props.image !== nextProps.image;
@@ -34,12 +34,6 @@ class Card extends PureComponent {
   }*/
 
   render () {
-    const styleImage = {
-      height: '100%',
-      width: '100%',
-      boxShadow: '0px 0px 40px 20px #0ff'
-    }
-    console.log(this.state.cardStyle);
     return (
       <div className={classes.Card}>
         <img className = {this.state.cardStyle} src ={"data:image/jpeg;base64," + this.props.image.img}/>

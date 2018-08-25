@@ -1,0 +1,31 @@
+{
+  "starterDeck":[
+    {"name": "Dark Legion" },
+    {"name": "Joey"},
+    {"name": "Kaiba"},
+    {"name": "Link Strike"},
+    {"name": "Pegasus"},
+    {"name": "Saber Force"},
+    {"name": "Yugi"},
+    {"name": "Yuya"}
+  ],
+  "boosterPack": [
+    {"name": "Astral_Pack_Eight" },
+    {"name": "Battles_of_Legend:_Light's_Revenge" },
+    {"name": "Battles_of_Legend:_Relentless_Revenge" },
+    {"name": "Breakers_of_Shadow" },
+    {"name": "Circuit_Break" },
+    {"name": "Dark Savior" },
+    {"name": "Extreme Force"},
+    {"name": "Flame of Destruction"},
+    {"name": "Legendary Duelist: Ancient Millennium"},
+    {"name": "Spirit Warriors"},
+    {"name": "Star Pack Vrain"}
+  ],
+  "structureDeck": [
+    {"name": "Cyberse Link" },
+    {"name": "Lair of Darkness"},
+    {"name": "Pendulum Domination"},
+    {"name": "Wave of Light"}
+  ]
+}

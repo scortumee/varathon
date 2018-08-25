@@ -7,7 +7,7 @@ export const GO_BACK_INPUT = 'GO_BACK_INPUT';
 
 export const CLEAR_CONTINUE = 'CLEAR_CONTINUE';
 export const SPEED_UP = 'SPEED_UP';
-export const LOAD_NEXT = 'LOAD_NEXT';
+
 export const UPDATE_INDEX = 'UPDATE_INDEX';
 export const LOAD_CURRENT = 'LOAD_CURRENT';
 export const BLOCK = 'BLOCK';

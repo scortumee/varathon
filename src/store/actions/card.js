@@ -123,15 +123,6 @@ export const updatePrev = () => {
   };
 };
 
-export const loadNext = (value, mainIndex, deckIndex) => {
-  return {
-    type: actionTypes.LOAD_NEXT,
-    value: value,
-    mainIndex: mainIndex,
-    deckIndex: deckIndex
-  };
-};
-
 export const updateIndex = (mainIndex,deckIndex) => {
   return {
     type: actionTypes.UPDATE_INDEX,
@@ -140,10 +131,11 @@ export const updateIndex = (mainIndex,deckIndex) => {
   };
 };
 
-export const loadCurrent = (value) => {
+export const loadCurrent = (value, name) => {
   return {
     type: actionTypes.LOAD_CURRENT,
-    value: value
+    value: value,
+    name: name
   };
 };
 
@@ -169,24 +161,31 @@ export const fetchForReserve = (deckValue) => {
     const {title,list} = getState().cardReserve.currentCategory;
 
     let baseImages=[];
-    let deckName = list[deckIndex+deckValue].name;
+    let deckName=null;
     let categoryName = title;
+    let time = 0;
 
+    if(deckIndex+deckValue === list.length) {
+      deckName = list[0].name;
+    }
+    else {
+      deckName = list[deckIndex+deckValue].name;
+    }
     axios.get(`/${categoryName}/${deckName}.json`)
       .then(response => {
         //dispatch(actionCreators.storePopup(response.data.deck.wallpaper));
-
         response.data.cards.map((image, index) => {
           let base64 = new Promise((resolve, reject) => {
-             encode(image.image, { string: true }, (error, result) => {
+             setTimeout(() => {encode(image.image, { string: true }, (error, result) => {
                if (error) reject(error);
                if (result) resolve(result);
-             });
+             });}, time);
+
            });
 
            base64.then(value =>
             baseImages[index] = value);
-
+          time = time+8
         })
         if(deckValue === 1) {
           dispatch(storeNextReserve(baseImages,response.data.cards.length));
@@ -194,7 +193,7 @@ export const fetchForReserve = (deckValue) => {
         else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1){
           console.log(response.data.deck.name);
           dispatch(storePrevReserve(baseImages,response.data.cards.length));
-          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 250);
+          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 300+response.data.cards.length);
         }
       })
 
@@ -210,8 +209,8 @@ export const switchNext = () => {
 
     let {deckIndex} = getState().card;
 
-    if(deckIndex === currentCategory.list.length-2 || deckIndex === currentCategory.list.length-1) {
-      deckIndex = -2;
+    if(deckIndex === currentCategory.list.length-1) {
+      deckIndex = -1;
     }
 
     if(getState().card.mainIndex === -1) {
@@ -222,10 +221,11 @@ export const switchNext = () => {
     }
 
     //dispatch(loadNext(nextReserve, nextLength, deckIndex+1));
-    dispatch(loadCurrent(nextReserve));
+    dispatch(loadCurrent(nextReserve, currentCategory.list[deckIndex+1].name));
     dispatch(updateIndex(nextLength,deckIndex+1));
 
     dispatch(fetchForReserve(1));
+
   };
 };
 
@@ -249,7 +249,7 @@ export const switchPrev = () => {
       dispatch(storeNextReserve(getState().button.currentReserve,getState().card.mainIndex));
     }
     //dispatch(loadNext(prevReserve, prevLength, deckIndex-1));
-    dispatch(loadCurrent(prevReserve));
+    dispatch(loadCurrent(prevReserve, currentCategory.list[deckIndex-1].name));
     dispatch(updateIndex(prevLength,deckIndex-1));
 
     dispatch(fetchForReserve(deckValue));

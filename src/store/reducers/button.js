@@ -1,7 +1,8 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  currentReserve:0
+  currentReserve:0,
+  currentName: ""
 }
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.LOAD_CURRENT: {
       return {
-        currentReserve: action.value
+        currentReserve: action.value,
+        currentName: action.name
       };
     }
     default:
