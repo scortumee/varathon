@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   currentReserve:0,
+  currentDetail:0,
   currentName: ""
 }
 
@@ -19,6 +20,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.LOAD_CURRENT: {
       return {
         currentReserve: action.value,
+        currentDetail: action.detail, 
         currentName: action.name
       };
     }

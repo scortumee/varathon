@@ -3,8 +3,12 @@ import * as actionTypes from '../actions/actionTypes';
 const initialState = {
   prevReserve:0,
   nextReserve:0,
+
   prevLength:0,
   nextLength:0,
+
+  nextDetail:0,
+  prevDetail:0,
 
   currentCategory:{
     title:0, list:0
@@ -17,6 +21,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         nextReserve: action.value,
+        nextDetail: action.detail,
         nextLength: action.length
       };
     }
@@ -25,6 +30,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         prevReserve: action.value,
+        prevDetail: action.detail,
         prevLength: action.length
       };
     }

@@ -12,9 +12,12 @@ import Button from './Button/Button';
 import Popup from './Popup/Popup';
 
 import { CircleLoader } from 'react-spinners';
-import Menu, {SubMenu, MenuItem } from 'rc-menu';
 import Menus from './Menus/Menus';
 import deckNames from './assets/deckNames';
+
+import ReactGA from 'react-ga';
+ReactGA.initialize('UA-124784036-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
   state = {

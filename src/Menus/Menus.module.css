@@ -1,32 +1,73 @@
+.mainWrap {
+  background-color: black;
+  text-align: center;
+  align-items: center;
+}
+.loaderWrap {
+  width: 200px;
+  padding-left: 40px;
+}
 .tier2 {
     border: none;
-    background-color: white;
+    background-color: black;
     /*background: linear-gradient(180deg, #434343, #000000);*/
-    padding: 14px 28px;
-    font-size: 20px;
+    padding: 5px 28px;
+    font-size: 18px;
+    font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     position: relative;
-    top: -6px;
+
     color: white;
-    margin-right: 5px;
+    /*margin-right: 5px;*/
+}
+
+.tier2Wrap {
+  /*overflow-x:scroll;*/
+  white-space: nowrap;
+  display: flex;
+}
+
+.testWrap {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  width:200px;
+
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.test1Wrap {
+  width: 350px;
+  background-color: red;
+  scroll-snap-align: center;
+}
+
+.test2Wrap {
+  width: 350px;
+  background-color: blue;
+  scroll-snap-align: center;
 }
 
 .scrollMenu {
-  overflow: auto;
+  overflow-x: auto;
   white-space: nowrap;
+  /*scroll-snap-type: mandatory;
+  scroll-snap-destination: 0% 100%;*/
 }
 
 .mainButton {
     /*border: none; #841769*/
     border-width: 2px 2px 2px 2px;
     border-color: #61045f;
-    border-radius: 30px;
     background-color: white;
     color: #61045f;
     padding: 16px 30px;
     font-size: 24px;
+    font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -51,20 +92,20 @@
 }
 
 .tier1 {
-    border-width: 2px 2px 2px 2px;
-    border-color: #61045f;
-    border-radius: 30px;
-    background-color: white;
+    /*border-width: 2px 2px 2px 2px;
+    border-color: #61045f;*/
+    background-color: black;
     width: 216px;
-    /*background: linear-gradient(180deg, #434343, #000000);*/
-    padding: 16px 30px;
+    /*background: linear-gradient(180deg, #434343, #000000);
+    padding: 16px 30px;*/
     font-size: 24px;
+    font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color: #61045f;
-    margin-right: 5px;
+    color: white;
     text-align: center;
+    border: none;
 }
 
 .tier1:hover {background: black; color: white; background: #7f067d;}

@@ -40,6 +40,10 @@ class Button extends Component {
     document.addEventListener('click',this.handleClick, false);
   }
 
+  componentWillUnmount() {
+    document.removeEventListener('click',this.handleClick,false);
+  }
+
   handleClick = () => {
     console.log("IN A HANDLE_CLICK BABE");
     this.setState({buttonLoc:{x:0, y:0}});
@@ -77,6 +81,9 @@ class Button extends Component {
     if(distance>29 || distance<-29) {
       console.log("IT IS OVER 29");
       this.setState({bounds: {top:0, bottom:0}});
+    }
+    else {
+      this.setState({bounds: {top:-50, bottom:80}});
     }
   }
 
@@ -176,6 +183,11 @@ class Button extends Component {
 
   render () {
     return (
+      <div>
+      <div>
+        {this.props.deckName}
+      </div>
+
       <div ref={(el) => this.diamond = el} className={classes.diamond}>
         <div onMouseDown={()=>this.lCircleClicked(3)} className={classes.llittleTriangle}/>
         <div onMouseDown={()=>this.lCircleClicked(2)} className={classes.circle}/>
@@ -202,6 +214,8 @@ class Button extends Component {
         <div onMouseDown={()=>this.rCircleClicked(1)} ref={(el) => this.circle2 = el} className={this.state.circle[1].style}/>
         <div onMouseDown={()=>this.rCircleClicked(2)} ref={(el) => this.circle3 = el} className={this.state.circle[2].style}/>
         <div onMouseDown={()=>this.rCircleClicked(3)} ref={(el) => this.circle4 = el} className={classes.rlittleTriangle}/>
+      </div>
+
       </div>
     );
   }

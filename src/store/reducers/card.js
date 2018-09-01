@@ -4,16 +4,16 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   pic: [
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic},
-    {img: data.defPic}
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0},
+    {img: data.defPic, detail:0}
   ],
   index: -1,
   index1: -1,
@@ -54,7 +54,8 @@ const reducer = (state = initialState, action) => {
 
       const newState = update(state.pic, {
           [index]: {
-            img: {$set: action.value[index1]}
+            img: {$set: action.value[index1]},
+            detail: {$set: action.detail[index1]}
           }
       });
 
@@ -77,10 +78,11 @@ const reducer = (state = initialState, action) => {
 
       const newState = update(state.pic, {
           [index]: {
-            img: {$set: action.value[index1]}
+            img: {$set: action.value[index1]},
+            detail: {$set: action.detail[index1]}
           }
       });
-
+      console.log(action.detail[index1]);
       return {
         ...state,
         pic: newState,
@@ -102,7 +104,8 @@ const reducer = (state = initialState, action) => {
 
       const newState = update(state.pic, {
         [index]: {
-          img: {$set: action.value[index1]}
+          img: {$set: action.value[index1]},
+          detail: {$set: action.detail[index1]}
         }
       });
 

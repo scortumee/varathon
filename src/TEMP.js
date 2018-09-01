@@ -29,40 +29,6 @@
   onStart={() => this.props.startAnime(0)}
     onStop={this.clearAndStop}
 
-    <Menu>
-    <SubMenu title={<span>sub menu</span>} key="1">
-    <MenuItem key="1-1">0-1</MenuItem>
-    <MenuItem key="1-2">0-2</MenuItem>
-    </SubMenu>
-
-    <MenuItem key="2">1</MenuItem>
-    <MenuItem key="3">outer</MenuItem>
-    <MenuItem disabled>disabled</MenuItem>
-    <MenuItem key="5">outer3</MenuItem>
-    </Menu>
-    <DragScroll height={200} width={300}>
-        <div>testffdfssdfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfdsfsdfdsfsdfdsf1</div>
-        <div>test2</div>
-        <div>test3</div>
-        <div>test4</div>
-        <div>test5</div>
-        <div>test6</div>
-        <div>test7</div>
-        <div>test8</div>
-        <div>test9</div>
-        <div>test10</div>
-        <div>test11</div>
-        <div>test12</div>
-        <div>test13</div>
-        <div>test14</div>
-        <div>test15</div>
-        <div>test16</div>
-        <div>test17</div>
-        <div>test18</div>
-        <div>test19</div>
-        <div>test20</div>
-    </DragScroll>
-
     import React, { Component } from 'react';
     import classes from './Card.module.css';
 
@@ -170,3 +136,57 @@
                   right:pointX+this.point.getBoundingClientRect().width-this.state.buttonLoc.x
 
                   top:pointY - this.state.buttonLoc.y-15, bottom: pointY-this.state.buttonLoc.y
+                  
+/*   IN MENU.js                        */
+
+<Draggable
+  bounds={{top: 0, bottom: 0}}
+  position={{x: this.state.posX, y:0}}
+>
+
+/* IN <DIV scrollMenu> */
+
+{this.state.showTier0 ?
+  <button
+    className={this.state.mainStyle}
+    onClick ={this.clicked1}
+    onMouseEnter={this.clicked1}
+    ref={(el) => this.instance = el}
+  >
+    Yu-Gi-Oh
+  </button>
+  : null
+}
+
+{this.state.showTier1 ?
+  <Fragment>
+    <button
+      onClick={() => this.loadCategory("Booster Pack", deckNames.boosterPack)}
+      ref={(el) => this.booster = el}
+      className={classes.tier1}>BOOSTER PACK
+    </button>
+    <button
+      onClick={() => this.loadCategory("Starter Deck", deckNames.starterDeck)}
+      ref={(el) => this.starter = el}
+      className={classes.tier1}>STARTER DECK
+    </button>
+    <button
+      onClick={() => this.loadCategory("Structure Deck", deckNames.structureDeck)}
+      ref={(el) => this.structure = el}
+      className={classes.tier1}>STRUCTURE DECK
+    </button>
+  </Fragment>
+  : null
+}
+
+{this.state.showTier2 ?
+  <Fragment>
+    {subMenus}
+  </Fragment>
+  : null
+}
+
+
+/* IN <DIV scrollMenu> */
+
+/*   IN MENU.js                        */

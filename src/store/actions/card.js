@@ -5,24 +5,27 @@ import axios from '../../axios-orders';
 import {encode} from 'node-base64-image';
 import deckNames from '../../assets/deckNames';
 
-export const goForward = (value) => {
+export const goForward = (value,detail) => {
   return {
     type: actionTypes.GO_FORWARD,
-    value: value
+    value: value,
+    detail: detail
   };
 };
 
-export const goBackward = (value) => {
+export const goBackward = (value,detail) => {
   return {
     type: actionTypes.GO_BACKWARD,
-    value: value
+    value: value,
+    detail: detail
   };
 };
 
-export const goBackwardInput = (value) => {
+export const goBackwardInput = (value,detail) => {
   return {
     type: actionTypes.GO_BACK_INPUT,
-    value: value
+    value: value,
+    detail: detail
   };
 };
 
@@ -67,7 +70,7 @@ export const updateNext = () => {
         dispatch(clearAndContinue(-1, getState().card.index));
       }
       else {
-        dispatch(goForward(getState().button.currentReserve));
+        dispatch(goForward(getState().button.currentReserve,getState().button.currentDetail));
       }
     }
 
@@ -93,7 +96,7 @@ export const updatePrev = () => {
           dispatch(clearAndContinue(getState().card.mainIndex+9, index));
         }
         else {
-          dispatch(goBackwardInput(getState().cardReserve.prevReserve));
+          dispatch(goBackwardInput(getState().cardReserve.prevReserve,getState().cardReserve.prevDetail));
         }
         /*dispatch(block());
 
@@ -117,7 +120,7 @@ export const updatePrev = () => {
         //setTimeout( ()=> {dispatch(hidePopUp());}, 1500);
       }
       else{
-        dispatch(goBackward(getState().button.currentReserve));
+        dispatch(goBackward(getState().button.currentReserve,getState().button.currentDetail));
       }
     }
   };
@@ -131,26 +134,29 @@ export const updateIndex = (mainIndex,deckIndex) => {
   };
 };
 
-export const loadCurrent = (value, name) => {
+export const loadCurrent = (value,detail, name) => {
   return {
     type: actionTypes.LOAD_CURRENT,
     value: value,
+    detail:detail,
     name: name
   };
 };
 
-export const storeNextReserve = (value, length) => {
+export const storeNextReserve = (value,detail, length) => {
   return {
     type: actionTypes.NEXT_RESERVE,
     value: value,
+    detail:detail,
     length: length
   };
 };
 
-export const storePrevReserve = (value, length) => {
+export const storePrevReserve = (value,detail, length) => {
   return {
     type: actionTypes.PREV_RESERVE,
     value: value,
+    detail:detail,
     length: length
   };
 };
@@ -188,11 +194,11 @@ export const fetchForReserve = (deckValue) => {
           time = time+8
         })
         if(deckValue === 1) {
-          dispatch(storeNextReserve(baseImages,response.data.cards.length));
+          dispatch(storeNextReserve(baseImages,response.data.cards,response.data.cards.length));
         }
         else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1){
           console.log(response.data.deck.name);
-          dispatch(storePrevReserve(baseImages,response.data.cards.length));
+          dispatch(storePrevReserve(baseImages,response.data.cards,response.data.cards.length));
           setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 300+response.data.cards.length);
         }
       })
@@ -205,7 +211,7 @@ export const fetchForReserve = (deckValue) => {
 
 export const switchNext = () => {
   return (dispatch,getState) => {
-    const {nextReserve, nextLength, currentCategory} = getState().cardReserve;
+    const {nextReserve,nextDetail, nextLength, currentCategory} = getState().cardReserve;
 
     let {deckIndex} = getState().card;
 
@@ -217,11 +223,11 @@ export const switchNext = () => {
       // do nothing
     }
     else {
-      dispatch(storePrevReserve(getState().button.currentReserve, getState().card.mainIndex));
+      dispatch(storePrevReserve(getState().button.currentReserve, getState().button.currentDetail,getState().card.mainIndex));
     }
 
     //dispatch(loadNext(nextReserve, nextLength, deckIndex+1));
-    dispatch(loadCurrent(nextReserve, currentCategory.list[deckIndex+1].name));
+    dispatch(loadCurrent(nextReserve,nextDetail, currentCategory.list[deckIndex+1].name));
     dispatch(updateIndex(nextLength,deckIndex+1));
 
     dispatch(fetchForReserve(1));
@@ -231,7 +237,7 @@ export const switchNext = () => {
 
 export const switchPrev = () => {
   return (dispatch,getState) => {
-    const {prevReserve, prevLength, currentCategory} = getState().cardReserve;
+    const {prevReserve, prevDetail, prevLength, currentCategory} = getState().cardReserve;
     let {deckIndex} = getState().card;
     let deckValue=-1;
 
@@ -246,10 +252,10 @@ export const switchPrev = () => {
       // do nothing
     }
     else {
-      dispatch(storeNextReserve(getState().button.currentReserve,getState().card.mainIndex));
+      dispatch(storeNextReserve(getState().button.currentReserve,getState().button.currentDetail,getState().card.mainIndex));
     }
     //dispatch(loadNext(prevReserve, prevLength, deckIndex-1));
-    dispatch(loadCurrent(prevReserve, currentCategory.list[deckIndex-1].name));
+    dispatch(loadCurrent(prevReserve, prevDetail,currentCategory.list[deckIndex-1].name));
     dispatch(updateIndex(prevLength,deckIndex-1));
 
     dispatch(fetchForReserve(deckValue));
