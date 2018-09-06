@@ -196,10 +196,10 @@ export const fetchForReserve = (deckValue) => {
         if(deckValue === 1) {
           dispatch(storeNextReserve(baseImages,response.data.cards,response.data.cards.length));
         }
-        else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1){
+        else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1 || deckValue===0){
           console.log(response.data.deck.name);
           dispatch(storePrevReserve(baseImages,response.data.cards,response.data.cards.length));
-          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 300+response.data.cards.length);
+          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 400+response.data.cards.length);
         }
       })
 

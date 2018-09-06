@@ -12,10 +12,7 @@ import * as $ from 'jquery';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
 
-//import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import MenuSlider from './MenuSlider';
+import {Carousel} from 'react-responsive-carousel';
 
 class Menus extends Component {
   constructor( props ) {
@@ -25,8 +22,10 @@ class Menus extends Component {
       showTier1: false,
       showTier2: false,
       mainStyle: classes.mainButton,
+      tierStyle1: classes.tier1,
 
       list:0,
+      title:0,
       posX:0,
       distance:0,
       deckLength:0,
@@ -47,22 +46,6 @@ class Menus extends Component {
     const snapObject = new ScrollSnap(element, snapConfig);
 
     snapObject.bind();
-    // Endless scroll
-
-    this.$subMenus = $(this.subMenus);
-    /*this.$subMenus.endless({
-      direction:'horizontal',
-      scrollbar:'disable'
-    });
-    $(document).ready(function(){
-
-
-      $(this.subMenus).endless({
-        direction:'horizontal',
-        scrollbar:'disable'
-      });
-    });*/
-    console.log($);
   }
 
   componentWillUnmount() {
@@ -99,13 +82,13 @@ class Menus extends Component {
     }
   }
 
-  moveMenus = () => {
+  /*moveMenus = () => {
     const currentX = this.booster.getBoundingClientRect().x;
     const indicatorX = this.indicator.getBoundingClientRect().x;
     const width = this.booster.getBoundingClientRect().width;
     this.setState({posX: indicatorX-currentX, deckLength: 200/11, distance: indicatorX-currentX});
     console.log(currentX, indicatorX, width);
-  }
+  }*/
 
   clicked2 = (list) => {
     this.setState({list: list}, ()=>this.setState({showTier2:true}));
@@ -119,17 +102,27 @@ class Menus extends Component {
     let currentX = 0;
     if(categoryName === "Booster Pack") {
       currentX = this.booster.getBoundingClientRect().x;
+      this.booster.style.color = 'white';
+      this.starter.style.color = '#909296';
+      this.structure.style.color = '#909296';
     }
     else if(categoryName === "Starter Deck") {
       currentX = this.starter.getBoundingClientRect().x;
+      this.starter.style.color = 'white';
+      this.booster.style.color = '#909296';
+      this.structure.style.color = '#909296';
     }
     else if(categoryName === "Structure Deck") {
       currentX = this.structure.getBoundingClientRect().x;
+      this.structure.style.color = 'white';
+      this.starter.style.color = '#909296';
+      this.booster.style.color = '#909296';
     }
     console.log("IN A MENU.js LOAD CATEGORY");
     this.setState((prevState, props) => {
     return { posX: prevState.posX+(indicatorX-currentX)-(216/2),
              distance: prevState.posX+(indicatorX-currentX),
+             title: categoryName,
              deckLength: 200/list.length
            }
     });
@@ -149,8 +142,42 @@ class Menus extends Component {
 
   scrollSubMenus=(e)=> {
     e = window.event || e;
-    this.subMenus.scrollLeft -=-(e.deltaY);
+    console.log(e.deltaY);
+    if(e.deltaY <0) {
+      this.slideLeft();
+    }
+    else {
+      this.slideRight();
+    }
+
+    //this.subMenus.scrollLeft -=-(e.deltaY);
     e.preventDefault();
+  }
+
+  adjustRight=(right)=> {
+    if(right) {
+      this.slideLeft();
+    }
+    else {
+      this.slideRight();
+    }
+  }
+
+  slideRight =()=> {
+    let [first, ...rest] = this.state.list;
+    let list = [...rest,first];
+    this.setState({list:list});
+    //this.setState({list:list},()=>this.props.storeCategory(this.state.title,list));
+  }
+
+  slideLeft =()=> {
+    let last = this.state.list.slice(-1);
+    let [lastVar] = last;
+
+    let rest = this.state.list.slice(0,-1);
+    let list = [lastVar, ...rest];
+    this.setState({list:list});
+    //this.setState({list:list},()=>this.props.storeCategory(this.state.title,list));
   }
 
   render() {
@@ -158,10 +185,13 @@ class Menus extends Component {
     let subMenus = null;
 
     if(this.state.showTier2) {
+      console.log("ABOUT TO RENDER SUBMENUS");
       subMenus = this.state.list.map(( deck, index) => {
           return <SubMenu
-                    name={deck.name}
+                    deck={deck}
                     key={index}
+                    index={index}
+                    adjustRight={this.adjustRight}
                  />
       });
     }
@@ -191,25 +221,27 @@ class Menus extends Component {
 
         <div ref={(el) => this.subMenus = el} className={classes.tier2Wrap}>
           {this.state.showTier2 ?
-            <MenuSlider/>
-            : null
-          }
-        </div>*/}
-
-        <div className={classes.mainWrap}>
-
-        <div ref={(el) => this.subMenus = el} className={classes.tier2Wrap}>
-          {this.state.showTier2 ?
             <Fragment>
               {subMenus}
             </Fragment>
             : null
           }
-        </div>
+        </div>*/}
 
+        <div className={classes.mainWrap}>
+        <FlexView hAlignContent='center'>
+          <div ref={(el) => this.subMenus = el} className={classes.tier2Wrap}>
+            {this.state.showTier2 ?
+              <Fragment>
+                {subMenus}
+              </Fragment>
+              : null
+            }
+          </div>
+        </FlexView>
         <FlexView hAlignContent='center'>
           <div className={classes.loaderWrap}>
-          <Progress  status="default" percent={this.state.packStatus}
+          <Progress status="default" percent={this.state.packStatus}
           theme={{
               default: {
                 symbol: ' ',
@@ -232,7 +264,7 @@ class Menus extends Component {
               onMouseEnter={this.clicked1}
               ref={(el) => this.instance = el}
             >
-              Yu-Gi-Oh
+              YU-GI-OH
             </button>
             : null
           }
@@ -258,7 +290,6 @@ class Menus extends Component {
             : null
           }
 
-
         </div>
       </Draggable>
 
@@ -278,9 +309,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
       setCategory: (title,list) => dispatch(actionCreators.setCategory(title,list)),
+      storeCategory: (title,list) => dispatch(actionCreators.storeCategory(title,list)),
       showPopUp: () => dispatch(actionCreators.showPopUp())
     };
 };
-
 
 export default connect(null, mapDispatchToProps)(Menus);

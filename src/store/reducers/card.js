@@ -82,7 +82,7 @@ const reducer = (state = initialState, action) => {
             detail: {$set: action.detail[index1]}
           }
       });
-      console.log(action.detail[index1]);
+
       return {
         ...state,
         pic: newState,
@@ -142,7 +142,7 @@ const reducer = (state = initialState, action) => {
         index: -1,
         index1: -1,
         mainIndex:-1,
-        deckIndex:-1,
+        deckIndex: action.value,
         firstTime:true,
         render: true
       }

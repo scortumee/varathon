@@ -16,8 +16,9 @@ import Menus from './Menus/Menus';
 import deckNames from './assets/deckNames';
 
 import ReactGA from 'react-ga';
-ReactGA.initialize('UA-124784036-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
+import GoogleTagManager from './assets/GoogleTagManager';
+//eactGA.initialize('UA-124784036-1');
+//ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
   state = {
@@ -96,8 +97,10 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className={classes.App}>
+        <GoogleTagManager gtmId='GTM-M84WTCP'/>
         <div>
         <FlexView>
           <Card image = {this.props.pics[0]}/>

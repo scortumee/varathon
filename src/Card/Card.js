@@ -4,7 +4,6 @@ import Modal from './Modal.js'
 import classes from './Card.module.css';
 
 
-
 class Card extends PureComponent {
   constructor( props ) {
     super( props );

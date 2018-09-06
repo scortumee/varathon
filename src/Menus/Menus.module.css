@@ -10,23 +10,27 @@
 .tier2 {
     border: none;
     background-color: black;
-    /*background: linear-gradient(180deg, #434343, #000000);*/
+    /*background: linear-gradient(180deg, #434343, #000000);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     padding: 5px 28px;
     font-size: 18px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
     position: relative;
 
-    color: white;
+    color: #909296;
+    min-width: 200px;
     /*margin-right: 5px;*/
+    transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
 }
 
 .tier2Wrap {
   /*overflow-x:scroll;*/
   white-space: nowrap;
   display: flex;
+  width: 600px;
 }
 
 .testWrap {
@@ -60,54 +64,48 @@
 }
 
 .mainButton {
-    /*border: none; #841769*/
-    border-width: 2px 2px 2px 2px;
-    border-color: #61045f;
-    background-color: white;
-    color: #61045f;
-    padding: 16px 30px;
-    font-size: 24px;
+    border: none;
+    /*border-width: 2px 2px 2px 2px;
+    border-color: #61045f;*/
+    background-color: black;
+    color: white;
+    padding: 0px 30px;
+    font-size: 30px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-right: 5px;
-}
-
-.mainClicked {
-    border-width: 2px 2px 2px 2px;
-    border-color: #61045f;
-    border-radius: 30px;
-    /*background-color: #CAC9CA;*/
-    background-color: white;
-    /*background: linear-gradient(180deg, #868f96, #596164);
-    background: linear-gradient(180deg, #42275a, #734b6d);*/
-    padding: 16px 30px;
-    font-size: 24px;
-    cursor: pointer;
-    display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color: #61045f;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     margin-right: 5px;
 }
 
 .tier1 {
     /*border-width: 2px 2px 2px 2px;
-    border-color: #61045f;*/
+    border-color: #61045f;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     background-color: black;
     width: 216px;
     /*background: linear-gradient(180deg, #434343, #000000);
     padding: 16px 30px;*/
-    font-size: 24px;
+    font-size: 30px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color: white;
+    color: #909296;
     text-align: center;
     border: none;
 }
 
+.tier1Clicked {
+  background-color: black;
+  width: 216px;
+  font-size: 30px;
+  font-family: 'D-DIN Condensed';
+  cursor: pointer;
+  display: inline-block;
+  color: white;
+  text-align: center;
+  border: none;
+}
 .tier1:hover {background: black; color: white; background: #7f067d;}
 .mainButton:hover {background: black; color: black; background: linear-gradient(180deg, #ffafbd, #ffc3a0);}
 
