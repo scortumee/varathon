@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 //import Popup from "reactjs-popup";
-import Modal from './Modal.js'
+import Modal from './Product_page/Modal.js'
 import classes from './Card.module.css';
-
 
 class Card extends PureComponent {
   constructor( props ) {
@@ -37,6 +36,7 @@ class Card extends PureComponent {
   }*/
 
     render () {
+
       return (
         <Modal input={
                       <div className={classes.Card}>

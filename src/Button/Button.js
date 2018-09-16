@@ -8,6 +8,7 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import SAT from 'sat';
 import update from 'immutability-helper';
+import pussy from '../assets/tenor.gif';
 
 class Button extends Component {
   state = {
@@ -17,10 +18,13 @@ class Button extends Component {
     pivot:-1,
     triangleStyle: classes.triangle,
     snap: {snapped:false, index:0},
+    limitUpDown:false,
+    startCount:false,
+    count:0,
 
     bounds: {
       top: -50,bottom:80,
-      left: -225, right:225
+      left: -215, right:215
     },
     buttonLoc: {x:0,y:0},
     circle: [
@@ -28,7 +32,8 @@ class Button extends Component {
       {loc:0,style: classes.circle},
       {loc:0,style: classes.circle},
       {loc:0,style: classes.circle}
-    ]
+    ],
+    over30px: false
   }
 
   componentDidMount() {
@@ -53,7 +58,19 @@ class Button extends Component {
   handleDrag = (e, ui) => {
     const {x,y} = this.state.deltaPosition;
     const distance = x+ui.deltaX;
-    console.log(distance);
+
+    if(this.state.startCount) {
+      console.log("DELTA_X",ui.deltaX);
+      this.setState((prevState, props) => {
+        return {
+          count:prevState.count+1
+        }
+      },()=>console.log("COUNT",this.state.count));
+      if(this.state.count >=5) {
+        this.setState({bounds:{left: -215,right:215,top:0,bottom:0}});
+        this.setState({startCount:false,count:0});
+      }
+    }
 
     const pivot = parseInt(distance/30);
 
@@ -76,14 +93,29 @@ class Button extends Component {
       }
     });
 
-    this.test();
+    if(!this.state.over30px) {
+      if(y>=30) {
+        this.setState({over30px:true},()=>this.props.toggleMenu(-1));
+      }
+      else if(y<=-30) {
+        this.setState({over30px:true},()=>this.props.toggleMenu(1));
+      }
+    }
+    else if(y<30 && y>-30) {
+      this.setState({over30px:false});
+    }
+    //this.checkCollision();
 
     if(distance>29 || distance<-29) {
-      console.log("IT IS OVER 29");
-      this.setState({bounds: {top:0, bottom:0}});
+      if(!this.state.limitUpDown) {
+        console.log("IT IS OVER 29");
+        this.setState({bounds: {top:0, bottom:0, left:-215, right:215}});
+        this.setState({limitUpDown: true});
+      }
     }
     else {
-      this.setState({bounds: {top:-50, bottom:80}});
+      this.setState({bounds: {top:-50, bottom:80, left:-215, right:215}});
+      this.setState({limitUpDown: false});
     }
   }
 
@@ -105,7 +137,7 @@ class Button extends Component {
     this.setState({circle: newState});
   }
 
-  test = () => {
+  checkCollision = () => {
     let mainX = this.point.getBoundingClientRect().x+50;
     let mainY = this.point.getBoundingClientRect().y+50;
     let mainCircle = new SAT.Circle(new SAT.Vector(mainX,mainY), 5);
@@ -125,15 +157,16 @@ class Button extends Component {
         });
         if(!this.state.snap.snapped) {
           this.setState({circle: newState,snap:{snapped:true,index:i}});
-          this.setState({buttonLoc:{x:82.5+(i*45), y:0}}, ()=>this.setState({bounds:{left:82.5+(i*45),right:0}}, ()=>this.letItGo()));
+          this.setState({buttonLoc:{x:82.5+(i*45), y:0}}, ()=>this.setState({bounds:{left:82.5+(i*45),right:0,top:0,bottom:0}}, ()=>this.letItGo()));
           //setTimeout( ()=> {this.setState({bounds:{left: -225,right:225}});}, 3000);
           // bounds:{left:82.5+(i*45), right:82.5+(i*45)+100},buttonLoc:{x:82.5+(i*45), y:0}
         }
       }
       else {
         if(this.state.snap.index === i) {
-          this.setState({snap:{snapped:false, index:0}});
+          this.setState({snap:{snapped:false, index:-1}});
         }
+
         const newState = update(this.state.circle, {
             [i]: {
               style: {$set: classes.circle}
@@ -147,7 +180,9 @@ class Button extends Component {
 
   letItGo = () => {
     console.log("INSIDE LET_IT_GO");
-    setTimeout( ()=> {this.setState({bounds:{left: -225,right:225}});}, 300);
+    //set it free
+    //setTimeout( ()=> {this.setState({bounds:{left: -215,right:215,top:0,bottom:0}});}, 300);
+    this.setState({startCount:true});
   }
 
   clearAndStop = () => {
@@ -184,9 +219,9 @@ class Button extends Component {
   render () {
     return (
       <div>
-      <div>
+      {/*<div>
         {this.props.deckName}
-      </div>
+      </div>*/}
 
       <div ref={(el) => this.diamond = el} className={classes.diamond}>
         <div onMouseDown={()=>this.lCircleClicked(3)} className={classes.llittleTriangle}/>
@@ -201,6 +236,7 @@ class Button extends Component {
           position={{x:this.state.buttonLoc.x, y:this.state.buttonLoc.y}}
         >
           <div ref={(el) => this.point = el} className={classes.loadCircle}>
+            {/*<img style={{position: 'absolute', width: '100%', top: '10px'}} src={pussy} />*/}
             <CircularProgressbar  initialAnimation={false}   styles={{
               path: {
                 transform: 'rotate(0deg)',
@@ -234,7 +270,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
       renderForward: () => dispatch(actionCreators.updateNext()),
-      renderBackward: () => dispatch(actionCreators.updatePrev())
+      renderBackward: () => dispatch(actionCreators.updatePrev()),
+      toggleMenu: (value) => dispatch(actionCreators.toggleMenu(value))
     };
 };
 

@@ -7,7 +7,7 @@ class SubMenu extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-
+      style: classes.tier2
     };
   }
 
@@ -25,17 +25,14 @@ class SubMenu extends Component {
     }
     else {
       this.props.setSubMenu(this.props.deck.id);
+      this.button.style.color = 'white';
     }
-  }
-
-  clickedTest = () => {
-
   }
 
   render() {
     return (
-      <button onClick={()=>this.clicked()} className={classes.tier2}>
-        {this.props.deck.name}
+      <button ref={(el) => this.button = el} onClick={()=>this.clicked()} className={this.props.style}>
+        {this.props.deck.name.split("_").join(" ")}
       </button>
     );
   }

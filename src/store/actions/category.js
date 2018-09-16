@@ -9,6 +9,13 @@ export const storeCategory = (title, list) => {
   };
 };
 
+export const toggleMenu = (value) => {
+  return {
+    type: actionTypes.TOGGLE_MENU,
+    value: value
+  };
+};
+
 export const setDefault = (value) => {
   return {
     type: actionTypes.SET_DEFAULT,

@@ -2,10 +2,13 @@
   background-color: black;
   text-align: center;
   align-items: center;
+  margin-top: 5px;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
 }
 .loaderWrap {
   width: 200px;
   padding-left: 40px;
+  height: 9px;
 }
 .tier2 {
     border: none;
@@ -13,53 +16,67 @@
     /*background: linear-gradient(180deg, #434343, #000000);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     padding: 5px 28px;
-    font-size: 18px;
+    font-size: 16px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
-    display: inline-block;
-
+    /*display: inline-block;*/
+     word-wrap: break-word;
     position: relative;
 
     color: #909296;
     min-width: 200px;
-    /*margin-right: 5px;*/
-    transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+    /*margin-right: 5px; */
+}
+
+.tier2Clicked {
+  border: none;
+  background-color: black;
+  padding: 5px 28px;
+  font-size: 16px;
+  font-family: 'D-DIN Condensed';
+  cursor: pointer;
+  display: inline-block;
+
+  position: relative;
+
+  color: white;
+  min-width: 200px;
 }
 
 .tier2Wrap {
-  /*overflow-x:scroll;*/
-  white-space: nowrap;
+  overflow-x:scroll;
   display: flex;
-  width: 600px;
+  max-width: 600px;
 }
 
-.testWrap {
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-snap-type: x mandatory;
-  display: flex;
-  width:200px;
-
+.tier2Large {
+  border: none;
+  background-color: black;
+  /*padding: 5px 28px;*/
+  font-size: 36px;
+  font-family: 'D-DIN Condensed';
+  cursor: pointer;
+  word-wrap: break-word;
+  position: relative;
+  display: inline-block;
+  color: #909296;
+  min-width: 600px;
 }
+
+.tier2LargeWrap {
+  overflow-x: scroll;
+  display: flex;
+  max-width: 600px;
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
-.test1Wrap {
-  width: 350px;
-  background-color: red;
-  scroll-snap-align: center;
-}
-
-.test2Wrap {
-  width: 350px;
-  background-color: blue;
-  scroll-snap-align: center;
-}
 
 .scrollMenu {
-  overflow-x: auto;
+  /*overflow-x: auto;
   white-space: nowrap;
-  /*scroll-snap-type: mandatory;
+  scroll-snap-type: mandatory;
   scroll-snap-destination: 0% 100%;*/
 }
 
@@ -70,7 +87,7 @@
     background-color: black;
     color: white;
     padding: 0px 30px;
-    font-size: 30px;
+    font-size: 36px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
@@ -83,22 +100,37 @@
     border-color: #61045f;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     background-color: black;
-    width: 216px;
+    width: 230px;
     /*background: linear-gradient(180deg, #434343, #000000);
     padding: 16px 30px;*/
-    font-size: 30px;
+    font-size: 36px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
     color: #909296;
     text-align: center;
     border: none;
+    transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
 }
 
+.tier1Small {
+  background-color: black;
+  width: 230px;
+  font-size: 16px;
+  font-family: 'D-DIN Condensed';
+  cursor: pointer;
+  display: inline-block;
+  color: #909296;
+  text-align: center;
+  border: none;
+  margin-top: 14px;
+  margin-bottom: 10px;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+}
 .tier1Clicked {
   background-color: black;
-  width: 216px;
-  font-size: 30px;
+  width: 230px;
+  font-size: 36px;
   font-family: 'D-DIN Condensed';
   cursor: pointer;
   display: inline-block;
@@ -106,8 +138,8 @@
   text-align: center;
   border: none;
 }
-.tier1:hover {background: black; color: white; background: #7f067d;}
-.mainButton:hover {background: black; color: black; background: linear-gradient(180deg, #ffafbd, #ffc3a0);}
+.tier1:hover {background: black; color: white;}
+/*.mainButton:hover {background: black; color: black; background: linear-gradient(180deg, #ffafbd, #ffc3a0);}*/
 
 .default {color: white;}
 

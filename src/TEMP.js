@@ -136,7 +136,7 @@
                   right:pointX+this.point.getBoundingClientRect().width-this.state.buttonLoc.x
 
                   top:pointY - this.state.buttonLoc.y-15, bottom: pointY-this.state.buttonLoc.y
-                  
+
 /*   IN MENU.js                        */
 
 <Draggable
@@ -190,3 +190,12 @@
 /* IN <DIV scrollMenu> */
 
 /*   IN MENU.js                        */
+
+"firebase.json",
+
+// ABOVE button
+{/*<div ref={(el) => this.subMenus = el} className={classes.tier2Wrap}>
+  <Fragment>
+    {subMenus}
+  </Fragment>
+</div>*/}

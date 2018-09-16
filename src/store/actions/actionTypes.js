@@ -6,7 +6,7 @@ export const GO_BACKWARD = 'GO_BACKWARD';
 export const GO_BACK_INPUT = 'GO_BACK_INPUT';
 
 export const CLEAR_CONTINUE = 'CLEAR_CONTINUE';
-export const SPEED_UP = 'SPEED_UP';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
 
 export const UPDATE_INDEX = 'UPDATE_INDEX';
 export const LOAD_CURRENT = 'LOAD_CURRENT';

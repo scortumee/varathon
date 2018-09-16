@@ -30,7 +30,7 @@ class App extends Component {
     showPopup: false
   }
   componentDidMount() {
-    this.props.setCategory("Booster Pack", deckNames.boosterPack);
+    this.props.setCategory("Starter Deck", deckNames.starterDeck);
     //this.props.renderInitial(1);
     //this.props.renderInitial(deckNames.starterDeck.length);
   }
