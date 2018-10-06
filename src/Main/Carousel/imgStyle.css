@@ -1,0 +1,45 @@
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.center:hover{
+  cursor: pointer;
+
+}
+.shiftdown{
+  padding-top: 50px;
+}
+
+.carasol-width{
+  padding-right:100px;
+  padding-left: 100px;
+}
+.banner{
+  text-align: left;
+  padding-left: 50px;
+  font-weight: bold;
+}
+
+
+.btn {
+  position: absolute;
+  opacity: 0;
+  bottom: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  color: white;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  opacity: 1;
+  cursor: pointer;
+  background-color: black;
+}

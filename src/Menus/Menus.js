@@ -4,63 +4,89 @@ import * as actionCreators from '../store/actions/index';
 import classes from './Menus.module.css';
 import FlexView from 'react-flexview';
 import SubMenu from './SubMenu';
+import Carousel from './Carousel';
 
 import deckNames from '../assets/deckNames';
-import Draggable, {DraggableCore} from 'react-draggable';
-import ScrollSnap from 'scroll-snap';
-import * as $ from 'jquery';
+import Draggable from 'react-draggable';
 import { Progress } from 'react-sweet-progress';
 import "react-sweet-progress/lib/style.css";
+
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import './Menus.css';
+import { Link } from 'react-router-dom';
+
 
 class Menus extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      showTier0: false,
-      showTier1: true,
-      showTier2: true,
       mainStyle: classes.mainButton,
-      tierStyle1: classes.tier1,
+      path: this.props.path,
 
-      list:deckNames.starterDeck,
-      origList:deckNames.starterDeck,
-      title:0,
+      list:this.props.list,
+      origList:this.props.list,
+      title:this.props.title,
       posX:0,
-      distance:0,
-      deckLength:0,
+      tier1Index:1,
       packStatus:0,
     };
+
   }
 
   componentDidMount() {
-    this.menus.addEventListener('mousewheel', this.scrollMenus,false);
-    /*this.subMenus.addEventListener('mousewheel', this.scrollSubMenus,false);
-
-    const snapConfig = {
-      scrollSnapDestination: '20% 0%', // *REQUIRED* scroll-snap-destination css property, as defined here: https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-snap-destination
-      scrollTimeout: 100, // *OPTIONAL* (default = 100) time in ms after which scrolling is considered finished
-      scrollTime: 300 // *OPTIONAL* (default = 300) time in ms for the smooth snap
+    //this.subMenus.addEventListener('mousewheel', this.scrollSubMenus,false);
+    //this.starter.style.color = 'white';
+    console.log("INSIDE MENU.JS COMPONENT_DID_MOUNT");
+    if(this.props.showTier === 2) {
+      this.sliderWrap.addEventListener('mousewheel', this.scrollCarousel,false);
     }
-    const element = this.subMenus;
-    const snapObject = new ScrollSnap(element, snapConfig);
-
-    snapObject.bind();*/
-    this.starter.style.color = 'white';
   }
 
+  componentWillMount() {
+
+    this.slideLeft();
+  }
   componentWillUnmount() {
-    this.menus.removeEventListener('mousewheel',this.scrollMenus,false);
-    //this.subMenus.removeEventListener('mousewheel',this.scrollSubMenus,false);
+    /*this.menus.removeEventListener('mousewheel',this.scrollMenus,false);
+    this.subMenus.removeEventListener('mousewheel',this.scrollSubMenus,false);
+    this.sliderWrap.removeEventListener('mousewheel',this.scrollCarousel,false);*/
   }
 
   componentDidUpdate() {
-    if(this.props.showTier!==0) {
+    console.log('INSIDE COMPONENT_DID_UPDATE', this.props.deckIndex);
+    if(this.props.showTier===1) {
+      this.menus.addEventListener('mousewheel', this.scrollMenus,false);
       this.subMenus.addEventListener('mousewheel', this.scrollSubMenus,false);
+      this.slider.slickGoTo(this.state.tier1Index);
     }
+    else if(this.props.showTier ===2) {
+      this.sliderWrap.addEventListener('mousewheel', this.scrollCarousel,false);
+      if(this.props.totalX === -1) {
+        this.slider.slickGoTo(this.props.deckIndex);
+      }
+      else {
+        this.slider.slickGoTo(this.props.deckIndex);
+      }
+    }
+
+    if(this.props.showTier !==2) {
+      if(this.state.title === "Booster Pack") {
+        this.booster.style.color = 'white';
+      }
+      else if(this.state.title === "Starter Deck") {
+        this.starter.style.color = 'white';
+      }
+      else if(this.state.title === "Structure Deck") {
+        this.structure.style.color = 'white';
+      }
+    }
+
   }
   componentWillReceiveProps(nextProps) {
     console.log("INSIDE COMP_WILL_REC", this.props.render);
-    console.log(this.props.deckIndex);
+    console.log(this.props.deckIndex,this.props.totalX);
     if(this.props.render === false ) {
       let list,firstHalf,secondHalf;
       if(this.props.deckIndex >nextProps.deckIndex) {
@@ -85,88 +111,96 @@ class Menus extends Component {
       }
 
     }
+    if(this.props.showTier === 2 && this.props.totalX === -1) {
+      this.adjustTier1();
+    }
 
     this.setState({packStatus: ((this.props.deckIndex+1)/this.state.list.length)*100});
   }
-  clicked1 = () => {
-    if(this.state.showTier1) {
-      this.setState({showTier1: false, posX: 0});
-      this.setState({mainStyle: classes.mainButton});
-    }
-    else {
-      this.setState({showTier1: true , showTier0: false},() => console.log("was moveMenus"));
-      this.setState({mainStyle: classes.mainClicked});
 
-      /*const width = this.divElement.clientWidth;
-      this.setState({ totalWidth: width });
-      console.log(width);*/
-
+  shouldComponentUpdate(nextProps,nextState) {
+    if(this.props.showTier !== nextProps.showTier) {
+      return true;
     }
+    if(this.props.deckIndex !== nextProps.deckIndex) {
+      return true;
+    }
+    if(this.state.list !== nextState.list) {
+      return true;
+    }
+
+    return false;
   }
 
-  /*moveMenus = () => {
-    const currentX = this.booster.getBoundingClientRect().x;
-    const indicatorX = this.indicator.getBoundingClientRect().x;
-    const width = this.booster.getBoundingClientRect().width;
-    this.setState({posX: indicatorX-currentX, deckLength: 200/11, distance: indicatorX-currentX});
-    console.log(currentX, indicatorX, width);
-  }*/
+  adjustTier1 = () =>{
+    let list,firstHalf,secondHalf;
 
-  clicked2 = (list) => {
-    this.setState({list: list,origList:list});
+    firstHalf = this.state.origList.slice(0,this.props.deckIndex);
+    secondHalf = this.state.origList.slice(this.props.deckIndex);
+
+    list = [...secondHalf,...firstHalf];
+    this.setState({list:list});
+  }
+
+  clicked2 = (origList) => {
+    this.setState({origList:origList});
+
+    let last = origList.slice(-1);
+
+    let rest = origList.slice(0,-1);
+    let list = [...last, ...rest];
+    this.setState({list:list});
+    if(this.props.showTier === 0) {
+      this.props.toggleMenu(1);
+    }
   }
 
   loadCategory = (categoryName, list) => {
     this.props.showPopUp();
-    this.props.setCategory(categoryName,list);
-
-    //const indicatorX = this.indicator.getBoundingClientRect().x+10;
-    const indicatorX = window.innerWidth/2;
+    //this.props.setCategory(categoryName,list);
+    this.props.loadFirst10(categoryName,list,0);
 
     let currentX = 0;
     if(categoryName === "Booster Pack") {
-      currentX = this.booster.getBoundingClientRect().x;
+      currentX = 0;
       this.booster.style.color = 'white';
       this.starter.style.color = '#909296';
       this.structure.style.color = '#909296';
     }
     else if(categoryName === "Starter Deck") {
-      currentX = this.starter.getBoundingClientRect().x;
+      currentX = 1;
       this.starter.style.color = 'white';
       this.booster.style.color = '#909296';
       this.structure.style.color = '#909296';
     }
     else if(categoryName === "Structure Deck") {
-      currentX = this.structure.getBoundingClientRect().x;
+      currentX = 2;
       this.structure.style.color = 'white';
       this.starter.style.color = '#909296';
       this.booster.style.color = '#909296';
     }
     console.log("IN A MENU.js LOAD CATEGORY");
     this.setState((prevState, props) => {
-    return { posX: prevState.posX+(indicatorX-currentX)-(230/2),
-             distance: prevState.posX+(indicatorX-currentX),
-             title: categoryName,
-             deckLength: 200/list.length
-           }
-    });
+      return { tier1Index:currentX,
+               title: categoryName
+             }
+      });
     this.clicked2(list);
   }
 
   scrollMenus =(e)=> {
-    console.log("FIRED",e);
-    /*this.setState((prevState, props) => {
-      return { posX: prevState.posX-e.deltaY}
-    });*/
     e = window.event || e;
-    let delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-    this.menus.scrollLeft -=-(e.deltaY);
+    if(e.deltaY <0) {
+      this.slider.slickPrev();
+    }
+    else if(e.deltaY > 0){
+      this.slider.slickNext();
+    }
     e.preventDefault();
   }
 
   scrollSubMenus=(e)=> {
     e = window.event || e;
-    console.log(e.deltaY);
     if(e.deltaY <0) {
       this.slideLeft();
     }
@@ -178,6 +212,17 @@ class Menus extends Component {
     e.preventDefault();
   }
 
+  scrollCarousel = (e) => {
+    e = window.event || e;
+    if(e.deltaY <0) {
+      this.slider.slickPrev();
+    }
+    else if(e.deltaY > 0){
+      this.slider.slickNext();
+    }
+
+    e.preventDefault();
+  }
   adjustRight=(right)=> {
     if(right) {
       this.slideLeft();
@@ -191,50 +236,74 @@ class Menus extends Component {
     let [first, ...rest] = this.state.list;
     let list = [...rest,first];
     this.setState({list:list});
-    //this.setState({list:list},()=>this.props.storeCategory(this.state.title,list));
   }
 
   slideLeft =()=> {
     let last = this.state.list.slice(-1);
-    let [lastVar] = last;
 
     let rest = this.state.list.slice(0,-1);
-    let list = [lastVar, ...rest];
+    let list = [...last, ...rest];
     this.setState({list:list});
-    //this.setState({list:list},()=>this.props.storeCategory(this.state.title,list));
   }
 
-  test =() => {
-    if(!this.state.showTier1) {
-      this.setState({showTier1:true,showTier2:true});
-    }
-    else {
-      this.setState({showTier1:false,showTier2:false});
-    }
-  }
   render() {
     console.log("IN A MENU.js RENDER ");
-    let subMenus,tier2Style;
+    let subMenus,tier2Style,settings;
     if(this.props.showTier === 2) {
-      tier2Style = classes.tier2Large;
+      console.log("CAROUSEL");
+      subMenus = this.state.origList.map(( deck, index) => {
+          return <Link to={`${this.state.path}/${deck.name}`}  key={deck.name}>
+                    <Carousel
+                      deck={deck}
+                      key={index}
+                      index={index}
+                      deckLength={this.state.origList.length-1}
+                      />
+                  </Link>
+      });
     }
     else {
       tier2Style = classes.tier2;
+      subMenus = this.state.list.map(( deck, index) => {
+          return <SubMenu
+                    deck={deck}
+                    key={index}
+                    index={index}
+                    adjustRight={this.adjustRight}
+                    style={tier2Style}
+                    deckLength={this.state.origList.length-1}
+                 />
+      });
     }
-    subMenus = this.state.list.map(( deck, index) => {
-        return <SubMenu
-                  deck={deck}
-                  key={index}
-                  index={index}
-                  adjustRight={this.adjustRight}
-                  style={tier2Style}
-               />
-    });
+
+    if(this.props.showTier === 1) {
+      settings = {
+        className: 'tier1Large',
+        centerMode: true,
+        infinite: true,
+        slidesToShow: 1,
+        speed: 100,
+        slidesToScroll:1,
+        variableWidth: true,
+        focusOnSelect:true
+      };
+    }
+    else if(this.props.showTier === 2) {
+      settings = {
+        className: 'tier2Large',
+        centerMode: true,
+        infinite: true,
+        slidesToShow: 1,
+        speed: 100,
+        slidesToScroll:1,
+        variableWidth: true
+        //focusOnSelect:true
+      };
+    }
 
     return (
       <Fragment>
       <div className={classes.mainWrap}>
-        {/*<FlexView hAlignContent='center'>*/}
           {this.props.showTier === 2 ?
             <div style={{marginBottom: '27px'}}>
               fds
@@ -271,7 +340,6 @@ class Menus extends Component {
             </FlexView>
             :null
           }
-        {/*</FlexView>*/}
 
       <FlexView hAlignContent='center'>
         <div className={classes.loaderWrap}>
@@ -290,32 +358,13 @@ class Menus extends Component {
         bounds={{top: 0, bottom: 0}}
         position={{x: 0, y:0}}
       >
-        <div ref={(el) => this.menus = el} className={classes.scrollMenu}>
-          {this.state.showTier0 ?
-            <button
-              className={this.state.mainStyle}
-              onClick ={this.clicked1}
-              onMouseEnter={this.clicked1}
-              ref={(el) => this.instance = el}
-            >
-              Yi-Gi-Oh
-            </button>
-            : null
-          }
-          {/*<FlexView hAlignContent='center'>*/}
-
+        <div className={classes.scrollMenu}>
           {this.props.showTier === 2 ?
             <FlexView hAlignContent='center'>
-              <div style={{color:'white',marginTop:'5px'}}>
-                <img src ={require('../assets/leftArrow.png')}/>
-              </div>
-              <div ref={(el) => this.subMenus = el} className={classes.tier2LargeWrap}>
-                <Fragment>
+              <div ref={(el) => this.sliderWrap = el} className={classes.tier2LargeWrap}>
+                <Slider ref={(el) => this.slider =el} {...settings}>
                   {subMenus}
-                </Fragment>
-              </div>
-              <div style={{color:'white',marginTop:'5px'}}>
-                <img src={require('../assets/rightArrow.png')}/>
+                </Slider>
               </div>
             </FlexView>
             :null
@@ -323,34 +372,38 @@ class Menus extends Component {
 
           {this.props.showTier === 1 ?
             <FlexView hAlignContent='center'>
-              <div style={{color:'white',marginTop:'5px'}}>
+              {/*<div style={{color:'white',marginTop:'5px'}}>
                 <img src ={require('../assets/leftArrow.png')}/>
+              </div>*/}
+              <div ref={(el) => this.menus = el} className={classes.tier1LargeWrap}>
+              <Slider ref={(el) => this.slider = el} {...settings}>
+                <div
+                  onClick={() => this.loadCategory("Booster Pack", deckNames.boosterPack)}
+                  ref={(el) => this.booster = el}
+                  className={classes.tier1}>BOOSTER PACK
+                </div>
+                <div
+                  onClick={() => this.loadCategory("Starter Deck", deckNames.starterDeck)}
+                  ref={(el) => this.starter = el}
+                  className={classes.tier1}>STARTER DECK
+                </div>
+                <div
+                  onClick={() => this.loadCategory("Structure Deck", deckNames.structureDeck)}
+                  ref={(el) => this.structure = el}
+                  className={classes.tier1}>STRUCTURE DECK
+                </div>
+              </Slider>
               </div>
-              <button
-                onClick={() => this.loadCategory("Booster Pack", deckNames.boosterPack)}
-                ref={(el) => this.booster = el}
-                className={classes.tier1}>BOOSTER PACK
-              </button>
-              <button
-                onClick={() => this.loadCategory("Starter Deck", deckNames.starterDeck)}
-                ref={(el) => this.starter = el}
-                className={classes.tier1}>STARTER DECK
-              </button>
-              <button
-                onClick={() => this.loadCategory("Structure Deck", deckNames.structureDeck)}
-                ref={(el) => this.structure = el}
-                className={classes.tier1}>STRUCTURE DECK
-              </button>
-              <div style={{color:'white',marginTop:'5px'}}>
+              {/*<div style={{color:'white',marginTop:'5px'}}>
                 <img src={require('../assets/rightArrow.png')}/>
-              </div>
+              </div>*/}
             </FlexView>
             : null
           }
           {this.props.showTier === 0 ?
             <FlexView hAlignContent='center'>
               <div style={{color:'white',marginTop:'5px'}}>
-                <img src ={require('../assets/leftArrow.png')}/>
+                <img src ={require('../assets/leftArrow.png')} alt='leftArrow'/>
               </div>
               <button
                 className={this.state.mainStyle}
@@ -359,12 +412,11 @@ class Menus extends Component {
                 Yu-Gi-Oh
               </button>
               <div style={{color:'white',marginTop:'5px'}}>
-                <img src={require('../assets/rightArrow.png')}/>
+                <img src={require('../assets/rightArrow.png')} alt='rightArrow'/>
               </div>
             </FlexView>
             : null
           }
-          {/*</FlexView>*/}
         </div>
       </Draggable>
 
@@ -383,8 +435,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
       setCategory: (title,list) => dispatch(actionCreators.setCategory(title,list)),
-      storeCategory: (title,list) => dispatch(actionCreators.storeCategory(title,list)),
-      showPopUp: () => dispatch(actionCreators.showPopUp())
+      loadFirst10:(title, list,deckIndex) => dispatch(actionCreators.loadFirst10(title, list, deckIndex)),
+      showPopUp: () => dispatch(actionCreators.showPopUp()),
+      toggleMenu: (value) => dispatch(actionCreators.toggleMenu(value))
     };
 };
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Draggable, {DraggableCore} from 'react-draggable';
+import Draggable from 'react-draggable';
 import * as actionCreators from '../store/actions/index';
 import classes from './Button.module.css';
 
@@ -8,7 +8,6 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import SAT from 'sat';
 import update from 'immutability-helper';
-import pussy from '../assets/tenor.gif';
 
 class Button extends Component {
   state = {
@@ -72,7 +71,7 @@ class Button extends Component {
       }
     }
 
-    const pivot = parseInt(distance/30);
+    const pivot = parseInt(distance/30,10);
 
     if(pivot !== this.state.pivot) {
       if(pivot >=0 && distance >0) {
@@ -236,7 +235,14 @@ class Button extends Component {
           position={{x:this.state.buttonLoc.x, y:this.state.buttonLoc.y}}
         >
           <div ref={(el) => this.point = el} className={classes.loadCircle}>
-            {/*<img style={{position: 'absolute', width: '100%', top: '10px'}} src={pussy} />*/}
+            {/*<img style={{position: 'absolute', width: '50%', top: '25px', left:'26px', pointerEvents:'none'}} src={arrows} />*/}
+            <svg style={{position: 'absolute',top: '25px', left:'26px'}} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="50px" height="50px" viewBox="0 0 925.101 925.101"  xmlSpace="preserve">
+              <g>
+              	<path d="M918.145,451.5L686.245,341.4c-8-3.8-17.3,2-17.3,10.9v55.8H566.145v109.6c55.2,0,102.9,0,102.9,0v54.9   c0,8.899,9.2,14.699,17.3,10.899l231.9-110.1C927.345,469,927.345,455.9,918.145,451.5z" fill="#cccfd1"/>
+              	<path d="M359.945,517.7V408.2h-103.8v-55.8c0-8.9-9.2-14.7-17.3-10.9l-231.9,110c-9.2,4.4-9.2,17.5,0,21.8l231.9,110.101   c8,3.8,17.3-2,17.3-10.9v-54.899C256.145,517.7,304.344,517.7,359.945,517.7z" fill="#cccfd1"/>
+              	<path d="M572.645,668.9L572.645,668.9h-54.899V256h54.899l0,0c8.9,0,14.7-9.3,10.9-17.3L473.445,6.9c-2.2-4.6-6.601-6.9-10.901-6.9   c-4.4,0-8.7,2.3-10.9,6.9l-110.1,231.9c-3.8,8,2,17.3,10.9,17.3l0,0h55.8V669h-55.8l0,0c-8.9,0-14.7,9.3-10.9,17.3l110.1,231.9   c2.2,4.6,6.601,6.9,10.9,6.9c4.401,0,8.701-2.301,10.901-6.9l110.1-232.1C587.345,678.101,581.545,668.9,572.645,668.9z" fill="#cccfd1"/>
+              </g>
+            </svg>
             <CircularProgressbar  initialAnimation={false}   styles={{
               path: {
                 transform: 'rotate(0deg)',

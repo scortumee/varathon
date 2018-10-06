@@ -54,6 +54,7 @@
   margin-left: 10px;
   margin-right: 10px;
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  cursor:pointer;
 }
 
 .circle {

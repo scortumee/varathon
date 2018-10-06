@@ -25,6 +25,7 @@
 
     color: #909296;
     min-width: 200px;
+    outline: none;
     /*margin-right: 5px; */
 }
 
@@ -56,17 +57,16 @@
   font-size: 36px;
   font-family: 'D-DIN Condensed';
   cursor: pointer;
-  word-wrap: break-word;
   position: relative;
   display: inline-block;
-  color: #909296;
-  min-width: 600px;
+  color: white;
 }
 
 .tier2LargeWrap {
-  overflow-x: scroll;
-  display: flex;
-  max-width: 600px;
+  /*overflow-x: hidden;
+  display: inline-block;*/
+  max-width: 95vw;
+  height:42px;
 }
 
 ::-webkit-scrollbar {
@@ -100,19 +100,22 @@
     border-color: #61045f;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
     background-color: black;
-    width: 230px;
-    /*background: linear-gradient(180deg, #434343, #000000);
-    padding: 16px 30px;*/
     font-size: 36px;
     font-family: 'D-DIN Condensed';
     cursor: pointer;
     display: inline-block;
-    color: #909296;
+    /*color: #909296;*/
     text-align: center;
     border: none;
     transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+    padding: 0 0;
+    min-width: 230px;
+    outline:none;
 }
 
+.tier1LargeWrap {
+  width: 690px;
+}
 .tier1Small {
   background-color: black;
   width: 230px;
@@ -123,7 +126,7 @@
   color: #909296;
   text-align: center;
   border: none;
-  margin-top: 14px;
+  margin-top: 15px;
   margin-bottom: 10px;
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
 }
@@ -142,10 +145,3 @@
 /*.mainButton:hover {background: black; color: black; background: linear-gradient(180deg, #ffafbd, #ffc3a0);}*/
 
 .default {color: white;}
-
-.redCircle {
-  width: 10px;
-	height: 15px;
-	background: red;
-  border-radius: 50%;
-}

@@ -10,37 +10,13 @@ class Card extends PureComponent {
       cardStyle: classes.Image
     };
   }
-  /*
-  componentWillReceiveProps ( nextProps ) {
-    if(this.props.image.img !== nextProps.image.img || this.props.image.highlight !== nextProps.image.highlight) {
-      console.log("Hey");
-      //this.setState({cardStyle: classes.ImageHalo});
-      console.log(this.state.cardStyle);
-    }
-    else {
-      this.setState({cardStyle: classes.Image});
-    }
-
-  }
-  */
-
-  /*shouldComponentUpdate (nextProps, nextState) {
-    console.log('Hey', this.state, nextState);
-    return this.props.image !== nextProps.image;
-  }*/
-
-  /*componentWillUpdate ( nextProps, nextState ) {
-    if(this.state.cardStyle !== nextState.cardStyle) {
-      this.setState({cardStyle: classes.Image});
-    }
-  }*/
 
     render () {
 
       return (
         <Modal input={
                       <div className={classes.Card}>
-                      <img className = {this.state.cardStyle} src ={"data:image/jpeg;base64," + this.props.image.img}/>
+                      <img className = {this.state.cardStyle} src ={"data:image/jpeg;base64," + this.props.image.img} alt={this.props.image.detail!==undefined?this.props.image.detail.name:"blank"}/>
                       </div>
                     }  //go to Modal.js for modification
                detail={this.props.image.detail}

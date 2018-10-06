@@ -1,0 +1,728 @@
+{
+    "boosterPack":[
+      {
+        "id": 118,
+        "name": "Legendary_Duelists:_White_Dragon_Abyss"
+      },
+      {
+        "id": 117,
+        "name": "Shadows_in_Valhalla"
+      },
+      {
+        "id": 116,
+        "name": "Cybernetic_Horizon"
+      },
+      {
+        "id": 115,
+        "name": "Battles_of_Legend:_Relentless_Revenge"
+      },
+      {
+        "id": 114,
+        "name": "Dark Savior"
+      },
+      {
+        "id": 113,
+        "name": "Flame of Destruction"
+      },
+      {
+        "id": 112,
+        "name": "Star Pack Vrain"
+      },
+      {
+        "id": 111,
+        "name": "Legendary Duelist: Ancient Millennium"
+      },
+      {
+        "id": 110,
+        "name": "Extreme Force"
+      },
+      {
+        "id": 109,
+        "name": "Spirit Warriors"
+      },
+      {
+        "id": 108,
+        "name": "Circuit_Break"
+      },
+      {
+        "id": 107,
+        "name": "Legendary_Duelists"
+      },
+      {
+        "id": 106,
+        "name": "Code_of_the_Duelist"
+      },
+      {
+        "id": 105,
+        "name": "Battles_of_Legend:_Light's_Revenge"
+      },
+      {
+        "id": 104,
+        "name": "Pendulum_Evolution"
+      },
+      {
+        "id": 103,
+        "name": "Duelist_Pack:_Dimensional_Guardians"
+      },
+      {
+        "id": 102,
+        "name": "Maximum_Crisis"
+      },
+      {
+        "id": 101,
+        "name": "Star_Pack_Battle_Royal"
+      },
+      {
+        "id": 100,
+        "name": "Fusion_Enforcers"
+      },
+      {
+        "id": 99,
+        "name": "Raging_Tempest"
+      },
+      {
+        "id": 98,
+        "name": "Destiny_Soldiers"
+      },
+      {
+        "id": 97,
+        "name": "Invasion:_Vengeance"
+      },
+      {
+        "id": 96,
+        "name": "Duelist_Pack:_Rivals_of_the_Pharaoh"
+      },
+      {
+        "id": 95,
+        "name": "Dragons_of_Legend:_Unleashed"
+      },
+      {
+        "id": 94,
+        "name": "The_Dark_Illusion"
+      },
+      {
+        "id": 93,
+        "name": "Yu-Gi-Oh!_The_Dark_Side_of_Dimensions_Movie_Pack"
+      },
+      {
+        "id": 92,
+        "name": "Shining_Victories"
+      },
+      {
+        "id": 91,
+        "name": "Millennium_Pack"
+      },
+      {
+        "id": 90,
+        "name": "Wing_Raiders"
+      },
+      {
+        "id": 89,
+        "name": "Breakers_of_Shadow"
+      },
+      {
+        "id": 88,
+        "name": "Dimension_of_Chaos"
+      },
+      {
+        "id": 87,
+        "name": "High-Speed_Riders"
+      },
+      {
+        "id": 86,
+        "name": "Clash_of_Rebellions"
+      },
+      {
+        "id": 85,
+        "name": "Dragons_of_Legend_2"
+      },
+      {
+        "id": 84,
+        "name": "Star_Pack_ARC-V"
+      },
+      {
+        "id": 83,
+        "name": "Crossed_Souls"
+      },
+      {
+        "id": 82,
+        "name": "World_Superstars"
+      },
+      {
+        "id": 81,
+        "name": "The_Secret_Forces"
+      },
+      {
+        "id": 80,
+        "name": "Secrets_of_Eternity"
+      },
+      {
+        "id": 79,
+        "name": "The_New_Challengers"
+      },
+      {
+        "id": 78,
+        "name": "Duelist_Alliance"
+      },
+      {
+        "id": 77,
+        "name": "Battle_Pack 3: Monsters League"
+      },
+      {
+        "id": 76,
+        "name": "Primal_Origin"
+      },
+      {
+        "id": 75,
+        "name": "Dragons_of_Legend"
+      },
+      {
+        "id": 74,
+        "name": "Star_Pack_2014"
+      },
+      {
+        "id": 73,
+        "name": "Legacy_of_the_Valiant"
+      },
+      {
+        "id": 72,
+        "name": "War_of_the_Giants:_Round_2"
+      },
+      {
+        "id": 71,
+        "name": "Shadow_Specters"
+      },
+      {
+        "id": 70,
+        "name": "Judgment_of_the_Light"
+      },
+      {
+        "id": 69,
+        "name": "Number_Hunters"
+      },
+      {
+        "id": 68,
+        "name": "Battle_Pack_2:_War_of_the_Giants"
+      },
+      {
+        "id": 67,
+        "name": "Lord_of_the_Tachyon_Galaxy"
+      },
+      {
+        "id": 66,
+        "name": "Hidden_Arsenal_7:_Knight_of_Stars"
+      },
+      {
+        "id": 65,
+        "name": "Star_Pack_2013"
+      },
+      {
+        "id": 64,
+        "name": "Cosmo_Blazer"
+      },
+      {
+        "id": 63,
+        "name": "Abyss_Rising"
+      },
+      {
+        "id": 62,
+        "name": "Return_of_the_Duelist"
+      },
+      {
+        "id": 61,
+        "name": "Hidden_Arsenal_6:_Omega_Xyz"
+      },
+      {
+        "id": 60,
+        "name": "Battle pack epic dawn"
+      },
+      {
+        "id": 59,
+        "name": "Galactic_Overlord"
+      },
+      {
+        "id": 58,
+        "name": "Ra_Yellow_Mega_Pack"
+      },
+      {
+        "id": 57,
+        "name": "Order_of_Chaos"
+      },
+      {
+        "id": 56,
+        "name": "Hidden Arsenal 5"
+      },
+      {
+        "id": 55,
+        "name": "Photon_Shockwave"
+      },
+      {
+        "id": 54,
+        "name": "Generation_Force"
+      },
+      {
+        "id": 53,
+        "name": "Extreme_Victory"
+      },
+      {
+        "id": 52,
+        "name": "Hidden_Arsenal_4:_Trishula's_Triumph"
+      },
+      {
+        "id": 51,
+        "name": "Storm_of_Ragnarok"
+      },
+      {
+        "id": 50,
+        "name": "Hidden_Arsenal_3"
+      },
+      {
+        "id": 49,
+        "name": "Starstrike_Blast"
+      },
+      {
+        "id": 48,
+        "name": "Duelist_Revolution"
+      },
+      {
+        "id": 47,
+        "name": "Hidden_Arsenal_2"
+      },
+      {
+        "id": 46,
+        "name": "The_Shining_Darkness"
+      },
+      {
+        "id": 45,
+        "name": "Absolute_Powerforce"
+      },
+      {
+        "id": 44,
+        "name": "Stardust_Overdrive"
+      },
+      {
+        "id": 43,
+        "name": "Hidden_Arsenal"
+      },
+      {
+        "id": 42,
+        "name": "Ancient_Prophecy"
+      },
+      {
+        "id": 41,
+        "name": "Retro_Pack_2"
+      },
+      {
+        "id": 40,
+        "name": "Raging_Battle"
+      },
+      {
+        "id": 39,
+        "name": "Crimson_Crisis"
+      },
+      {
+        "id": 38,
+        "name": "Dark_Legends"
+      },
+      {
+        "id": 37,
+        "name": "Crossroads_of_Chaos"
+      },
+      {
+        "id": 36,
+        "name": "The_Duelist_Genesis"
+      },
+      {
+        "id": 35,
+        "name": "Premium_Pack_2_(TCG)"
+      },
+      {
+        "id": 34,
+        "name": "Retro_Pack"
+      },
+      {
+        "id": 33,
+        "name": "Light_of_Destruction"
+      },
+      {
+        "id": 32,
+        "name": "Phantom_Darkness"
+      },
+      {
+        "id": 31,
+        "name": "Dark_Revelation_Volume_4"
+      },
+      {
+        "id": 30,
+        "name": "Gladiator's_Assault"
+      },
+      {
+        "id": 29,
+        "name": "Tactical_Evolution"
+      },
+      {
+        "id": 28,
+        "name": "Premium_Pack_(TCG)"
+      },
+      {
+        "id": 27,
+        "name": "Force_of_the_Breaker"
+      },
+      {
+        "id": 26,
+        "name": "Strike_of_Neos"
+      },
+      {
+        "id": 25,
+        "name": "Dark_Revelation_Volume_3"
+      },
+      {
+        "id": 24,
+        "name": "Cyberdark_Impact"
+      },
+      {
+        "id": 23,
+        "name": "Power_of_the_Duelist"
+      },
+      {
+        "id": 22,
+        "name": "Enemy_of_Justice"
+      },
+      {
+        "id": 21,
+        "name": "Shadow_of_Infinity"
+      },
+      {
+        "id": 20,
+        "name": "Elemental_Energy"
+      },
+      {
+        "id": 19,
+        "name": "Dark_Revelation_Volume_2"
+      },
+      {
+        "id": 18,
+        "name": "Cybernetic_Revolution"
+      },
+      {
+        "id": 17,
+        "name": "Dark_Beginning_2"
+      },
+      {
+        "id": 16,
+        "name": "The_Lost_Millennium"
+      },
+      {
+        "id": 15,
+        "name": "Dark_Revelation_Volume_1"
+      },
+      {
+        "id": 14,
+        "name": "Flaming_Eternity"
+      },
+      {
+        "id": 13,
+        "name": "Rise_of_Destiny"
+      },
+      {
+        "id": 12,
+        "name": "Dark_Beginning_1"
+      },
+      {
+        "id": 11,
+        "name": "Soul_of_the_Duelist"
+      },
+      {
+        "id": 10,
+        "name": "Ancient_Sanctuary"
+      },
+      {
+        "id": 9,
+        "name": "Invasion_of_Chaos"
+      },
+      {
+        "id": 8,
+        "name": "Dark_Crisis"
+      },
+      {
+        "id": 7,
+        "name": "Magician's_Force"
+      },
+      {
+        "id": 6,
+        "name": "Pharaonic_Guardian"
+      },
+      {
+        "id": 5,
+        "name": "Legacy_of_Darkness"
+      },
+      {
+        "id": 4,
+        "name": "Labyrinth_of_Nightmare"
+      },
+      {
+        "id": 3,
+        "name": "Pharaoh's_Servant"
+      },
+      {
+        "id": 2,
+        "name": "Spell Ruler"
+      },
+      {
+        "id": 1,
+        "name": "Metal_Raiders"
+      },
+      {
+        "id": 0,
+        "name": "Legend_of_Blue_Eyes_White_Dragon"
+      }
+    ],
+    "starterDeck":[
+        {
+            "id":0,
+            "name":"Dark Legion"
+        },
+        {
+            "id":1,
+            "name":"Joey"
+        },
+        {
+            "id":2,
+            "name":"Kaiba"
+        },
+        {
+            "id":3,
+            "name":"Link Strike"
+        },
+        {
+            "id":4,
+            "name":"Pegasus"
+        },
+        {
+            "id":5,
+            "name":"Saber Force"
+        },
+        {
+            "id":6,
+            "name":"Space-Time_Showdown_Power-Up_Pack"
+        },
+        {
+            "id":7,
+            "name":"Starter_Deck:_Codebreaker"
+        },
+        {
+            "id":8,
+            "name":"Starter_Deck:_Dawn_of_the_Xyz"
+        },
+        {
+            "id":9,
+            "name":"Starter_Deck:_Duelist_Toolbox"
+        },
+        {
+            "id":10,
+            "name":"Starter_Deck:_Kaiba_Evolution"
+        },
+        {
+            "id":11,
+            "name":"Starter_Deck:_Kaiba_Reloaded"
+        },
+        {
+            "id":12,
+            "name":"Starter_Deck:_Syrus_Truesdale"
+        },
+        {
+            "id":13,
+            "name":"Starter_Deck:_Xyz_Symphony"
+        },
+        {
+            "id":14,
+            "name":"Starter_Deck:_Yu-Gi-Oh!_5D's"
+        },
+        {
+            "id":15,
+            "name":"Starter_Deck:_Yugi_Evolution"
+        },
+        {
+            "id":16,
+            "name":"Starter_Deck:_Yugi_Reloaded"
+        },
+        {
+            "id":17,
+            "name":"Starter_Deck_2006"
+        },
+        {
+            "id":18,
+            "name":"Super_Starter:_Space-Time_Showdown"
+        },
+        {
+            "id":19,
+            "name":"Super_Starter:_V_for_Victory"
+        },
+        {
+            "id":20,
+            "name":"Super_Starter_Power-Up_Pack"
+        },
+        {
+            "id":21,
+            "name":"Yugi"
+        },
+        {
+            "id":22,
+            "name":"Yuya"
+        }
+    ],
+    "structureDeck":[
+        {
+            "id":0,
+            "name":"Cyber_Dragon_Revolution_Structure_Deck"
+        },
+        {
+            "id":1,
+            "name":"Cyberse Link"
+        },
+        {
+            "id":2,
+            "name":"Dinosmasher's_Fury_Structure_Deck"
+        },
+        {
+            "id":3,
+            "name":"Dragunity_Legion_Structure_Deck"
+        },
+        {
+            "id":4,
+            "name":"Emperor_of_Darkness_Structure_Deck"
+        },
+        {
+            "id":5,
+            "name":"Gates_of_the_Underworld_Structure_Deck"
+        },
+        {
+            "id":6,
+            "name":"Geargia_Rampage_Structure_Deck"
+        },
+        {
+            "id":7,
+            "name":"HERO_Strike_Structure_Deck"
+        },
+        {
+            "id":8,
+            "name":"Lair of Darkness"
+        },
+        {
+            "id":9,
+            "name":"Lost_Sanctuary_Structure_Deck"
+        },
+        {
+            "id":10,
+            "name":"Machine_Reactor_Structure_Deck"
+        },
+        {
+            "id":11,
+            "name":"Master_of_Pendulum_Structure_Deck"
+        },
+        {
+            "id":12,
+            "name":"Onslaught_of_the_Fire_Kings_Structure_Deck"
+        },
+        {
+            "id":13,
+            "name":"Pendulum Domination"
+        },
+        {
+            "id":14,
+            "name":"Realm_of_Light_Structure_Deck"
+        },
+        {
+            "id":15,
+            "name":"Realm_of_the_Sea_Emperor_Structure_Deck"
+        },
+        {
+            "id":16,
+            "name":"Rise_of_the_Dragon_Lords_Structure_Deck"
+        },
+        {
+            "id":17,
+            "name":"Rise_of_the_True_Dragons_Structure_Deck"
+        },
+        {
+            "id":18,
+            "name":"Saga_of_Blue-Eyes_White_Dragon_Structure_Deck"
+        },
+        {
+            "id":19,
+            "name":"Samurai_Warlords_Structure_Deck"
+        },
+        {
+            "id":20,
+            "name":"Spellcaster's_Command_Structure_Deck"
+        },
+        {
+            "id":21,
+            "name":"Structure_Deck:_Dinosaur's_Rage"
+        },
+        {
+            "id":22,
+            "name":"Structure_Deck:_Dragon's_Roar"
+        },
+        {
+            "id":23,
+            "name":"Structure_Deck:_Fury_from_the_Deep"
+        },
+        {
+            "id":24,
+            "name":"Structure_Deck:_Invincible_Fortress"
+        },
+        {
+            "id":25,
+            "name":"Structure_Deck:_Lord_of_the_Storm"
+        },
+        {
+            "id":26,
+            "name":"Structure_Deck:_Machine_Re-Volt"
+        },
+        {
+            "id":27,
+            "name":"Structure_Deck:_Marik_(TCG)"
+        },
+        {
+            "id":28,
+            "name":"Structure_Deck:_Seto_Kaiba"
+        },
+        {
+            "id":29,
+            "name":"Structure_Deck:_Spellcaster's_Judgment"
+        },
+        {
+            "id":30,
+            "name":"Structure_Deck:_Warrior's_Triumph"
+        },
+        {
+            "id":31,
+            "name":"Structure_Deck:_Yugi_Muto"
+        },
+        {
+            "id":32,
+            "name":"Structure_Deck:_Zombie_Madness"
+        },
+        {
+            "id":33,
+            "name":"Synchron_Extreme_Structure_Deck"
+        },
+        {
+            "id":34,
+            "name":"The_Dark_Emperor_Structure_Deck"
+        },
+        {
+            "id":35,
+            "name":"Warriors'_Strike_Structure_Deck"
+        },
+        {
+            "id":36,
+            "name":"Wave of Light"
+        },
+        {
+            "id":37,
+            "name":"Zombie_World_Structure_Deck"
+        }
+    ]
+}

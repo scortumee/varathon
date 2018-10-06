@@ -4,7 +4,7 @@ const initialState = {
   currentReserve:0,
   currentDetail:0,
   currentName: "",
-  showTier: 0
+  showTier: 2
 }
 
 const reducer = (state = initialState, action) => {

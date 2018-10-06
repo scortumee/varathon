@@ -1,22 +1,8 @@
 .App {
-  text-align: center;
-  display: flex;
-  background-color: #F0F0F0;
-  justify-content: space-between;
+  display:flex;
   flex-direction: column;
-  min-height: 100vh;
-  /*background: linear-gradient(180deg, #f5f7fa, #c3cfe2);*/
-  /*align-items: center;*/
 }
 
-.redCircle {
-  width: 15px;
-	height: 15px;
-	/*background: red;*/
-  background: linear-gradient(180deg, #eb3349, #f45c43);
-  border-radius: 50%;
-}
-/*
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -26,6 +12,14 @@
   background-color: #222;
   height: 150px;
   padding: 20px;
+  color: white;
+}
+
+.blackHeader {
+  background-color: #222;
+  height: 150px;
+  padding-top: 1000px;
+  padding: 100px;
   color: white;
 }
 
@@ -40,4 +34,4 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
-}*/
+}

@@ -9,6 +9,6 @@ body {
   margin-top: 0px;
   padding: 0;
   font-family: 'D-DIN Condensed';
-  background-color: #F8F8F8;
-  /*background: linear-gradient(180deg, #ff9a9e, #fad0c4);*/
+  background-color: white;
+  /* #F8F8F8 background: linear-gradient(180deg, #ff9a9e, #fad0c4);*/
 }

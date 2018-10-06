@@ -18,3 +18,4 @@ export const STORE_POP_UP = 'STORE_POP_UP';
 
 export const SET_CATEGORY = 'SET_CATEGORY';
 export const SET_DEFAULT = 'SET_DEFAULT';
+export const RENDER_FIRST_10 = 'RENDER_FIRST_10';

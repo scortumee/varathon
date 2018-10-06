@@ -3,7 +3,6 @@ import * as actionCreators from './index';
 
 import axios from '../../axios-orders';
 import {encode} from 'node-base64-image';
-import deckNames from '../../assets/deckNames';
 
 export const goForward = (value,detail) => {
   return {
@@ -40,6 +39,15 @@ export const clearAndContinue = (index1, index) => {
 export const block = () => {
   return {
     type: actionTypes.BLOCK
+  };
+};
+
+export const renderFirst10 = (value,detail,deckIndex) => {
+  return {
+    type: actionTypes.RENDER_FIRST_10,
+    value: value,
+    detail: detail,
+    deckIndex: deckIndex
   };
 };
 
@@ -166,7 +174,7 @@ export const fetchForReserve = (deckValue) => {
     const {deckIndex} = getState().card;
     const {title,list} = getState().cardReserve.currentCategory;
 
-    let baseImages=[];
+    let base64;
     let deckName=null;
     let categoryName = title;
     let time = 0;
@@ -179,28 +187,76 @@ export const fetchForReserve = (deckValue) => {
     }
     axios.get(`/${categoryName}/${deckName}.json`)
       .then(response => {
-        //dispatch(actionCreators.storePopup(response.data.deck.wallpaper));
-        response.data.cards.map((image, index) => {
-          let base64 = new Promise((resolve, reject) => {
+        let baseImages = response.data.cards.map((image, index) => {
+          base64 = new Promise((resolve, reject) => {
              setTimeout(() => {encode(image.image, { string: true }, (error, result) => {
                if (error) reject(error);
                if (result) resolve(result);
              });}, time);
 
            });
+           time = time+8;
+           return base64;
+        });
 
-           base64.then(value =>
-            baseImages[index] = value);
-          time = time+8
-        })
-        if(deckValue === 1) {
-          dispatch(storeNextReserve(baseImages,response.data.cards,response.data.cards.length));
-        }
-        else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1 || deckValue===0){
-          console.log(response.data.deck.name);
-          dispatch(storePrevReserve(baseImages,response.data.cards,response.data.cards.length));
-          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 400+response.data.cards.length);
-        }
+        Promise.all(baseImages).then((baseResult)=> {
+          if(deckValue === 1) {
+            dispatch(storeNextReserve(baseResult,response.data.cards,response.data.cards.length));
+          }
+          else if(deckValue === -1 || deckValue === list.length || deckValue===list.length-1 || deckValue===0){
+            //console.log(response.data.deck.name);
+            dispatch(storePrevReserve(baseResult,response.data.cards,response.data.cards.length));
+            //setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 400+response.data.cards.length);
+          }
+        });
+      })
+
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+};
+
+export const fetchData = (deckValue) => {
+  return (dispatch,getState) => {
+    const {title,list} = getState().cardReserve.currentCategory;
+
+    let base64;
+    let deckName=null;
+    let categoryName = title;
+
+    deckName = list[deckValue].name;
+    console.log(categoryName,deckName);
+    axios.get(`/${categoryName}/${deckName}.json`)
+      .then(response => {
+        console.log(response);
+        let baseImages = response.data.cards.map((image, index) => {
+          base64 = new Promise((resolve, reject) => {
+             encode(image.image, { string: true }, (error, result) => {
+               if (error) reject(error);
+               if (result) resolve(result);
+             });
+
+           });
+
+           return base64;
+        });
+
+        Promise.all(baseImages).then((baseResult)=> {
+          dispatch(actionCreators.setDefault(deckValue));
+
+          if(deckValue === 0) {
+            dispatch(fetchForReserve(list.length));
+          }
+          else {
+            dispatch(fetchForReserve(-1));
+          }
+          dispatch(loadCurrent(baseResult,response.data.cards,response.data.cards.length));
+
+          dispatch(renderFirst10(baseResult,response.data.cards,deckValue));
+          dispatch(fetchForReserve(1));
+          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 500);
+        });
       })
 
       .catch(function (error) {

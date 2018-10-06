@@ -147,6 +147,27 @@ const reducer = (state = initialState, action) => {
         render: true
       }
     }
+    case actionTypes.RENDER_FIRST_10: {
+      let i, newState;
+      newState=state.pic;
+      for(i=0; i<10; i++) {
+        newState = update(newState, {
+            [i]: {
+              img: {$set: action.value[i]},
+              detail: {$set: action.detail[i]}
+            }
+        });
+      }
+      return {
+        pic: newState,
+        index: 9,
+        index1: 9,
+        mainIndex: action.value.length,
+        deckIndex: action.deckIndex,
+        firstTime:true,
+        render: true
+      }
+    }
       default:
         return state;
     }

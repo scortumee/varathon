@@ -187,15 +187,60 @@
 }
 
 
-/* IN <DIV scrollMenu> */
+{/*<nav>
+  <ul>
+    <li><Link to={{
+        pathname: '/'
+      }}>Home</Link>
+    </li>
+  </ul>
+</nav>*/}
 
-/*   IN MENU.js                        */
+/*           Inside shitty nuka carousel  */
+<div className="top-left">
+  <p className="carousel-text">Latest Booster Packs</p>
+  <button className="button-style">Singles </button>
+</div>
 
-"firebase.json",
+/*           Inside shitty nuka carousel  */
+<Carousel
+  autoplay={true}
+  wrapAround={true}
+  renderCenterLeftControls={({ previousSlide }) => (
+    <div onClick={previousSlide} style={{color:'white'}}>
+      <img src ={require('../assets/leftArrow.png')}/>
+    </div>
+  )}
+  renderCenterRightControls={({ nextSlide }) => (
+    <div onClick={nextSlide} style={{color:'white'}}>
+      <img src ={require('../assets/rightArrow.png')}/>
+    </div>
+    )}
+>
+<Link to={{
+ pathname: '/booster-packs',
+ title: 'Booster Pack',
+ list: deckNames.boosterPack,
+ deckIndex:0
+ }} style={{ textDecoration: 'none' }}><div className="container">
+      <img src={booster} alt="booster" className="stretch"/>
+  </div> </Link>
 
-// ABOVE button
-{/*<div ref={(el) => this.subMenus = el} className={classes.tier2Wrap}>
-  <Fragment>
-    {subMenus}
-  </Fragment>
-</div>*/}
+  <Link to={{
+   pathname: '/structure-decks',
+   title: 'Structure Deck',
+   list: deckNames.structureDeck,
+   deckIndex:0
+   }} style={{ textDecoration: 'none' }}><div className="container">
+      <img src={structure} alt="structure" className="stretch"/>
+  </div> </Link>
+
+  <Link to={{
+   pathname: '/starter-decks',
+   title: 'Starter Deck',
+   list: deckNames.starterDeck,
+   deckIndex:0
+   }} style={{ textDecoration: 'none' }}><div className="container">
+      <img src={starter} alt="starter" className="stretch"/>
+  </div> </Link>
+</Carousel>

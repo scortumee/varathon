@@ -25,7 +25,7 @@ export const setDefault = (value) => {
 
 export const setSubMenu = (index) => {
   return (dispatch,getState) => {
-    let value=null;
+    /*let value=null;
     let {list} = getState().cardReserve.currentCategory;
     if(index===1) {
       dispatch(setDefault(0));
@@ -41,7 +41,8 @@ export const setSubMenu = (index) => {
     }
     console.log("IN A CATEGORY.js","index",index,"val",value);
     dispatch(actionCreators.fetchForReserve(1));
-    dispatch(actionCreators.fetchForReserve(value));
+    dispatch(actionCreators.fetchForReserve(value));*/
+    dispatch(actionCreators.fetchData(index));
   };
 };
 
@@ -52,5 +53,14 @@ export const setCategory = (title, list) => {
 
     dispatch(actionCreators.fetchForReserve(1));
     dispatch(actionCreators.fetchForReserve(list.length));
+  };
+};
+
+// This is for loading Kukulkan with first ten pics are already displayed
+export const loadFirst10 = (title,list,deckIndex) => {
+  return (dispatch, getState) => {
+    dispatch(storeCategory(title,list));
+
+    dispatch(actionCreators.fetchData(deckIndex));
   };
 };

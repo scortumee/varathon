@@ -1,9 +1,11 @@
 .modal {
-  height: 500px;
-  font-size: 14px;
-  max-height: calc(100vh - 210px);
+  font-size: 16px;
+  max-height: calc(100vh - 50px);
   overflow-y: scroll;
   overflow-x: hidden;
+  height:1000px;
+  /*margin:0 auto;*/
+  /*width: 500px;*/
 
 }
 .modal > .header {
@@ -21,7 +23,7 @@
   /*position: relative;*/
 }
 .modal > .actions {
-  width: 100%;
+  width: 100px;
   padding: 10px 5px;
   margin: auto;
   text-align: center;
@@ -40,14 +42,19 @@
   border: 1px solid #cfcece;
 }
 .column {
-  float: left;
-  width: 33.33%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;*/
+  width: 50%;
+  float: inherit;
+  /*width: 33.33%;*/
+  /*width: 40%;*/
   padding: 5px;
-  padding-right: 125px;
+  /*padding-right: 125px;*/
 }
 
 .tabledetails{
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 

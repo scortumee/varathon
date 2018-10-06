@@ -1,0 +1,10 @@
+.Kukulkan {
+  text-align: center;
+  display: flex;
+  background-color: #F0F0F0;
+  justify-content: space-between;
+  flex-direction: column;
+  min-height: 100vh;
+  /*background: linear-gradient(180deg, #f5f7fa, #c3cfe2);*/
+  /*align-items: center;*/
+}

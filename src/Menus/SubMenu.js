@@ -1,37 +1,34 @@
 import React, {Component} from 'react';
-import classes from './Menus.module.css';
 import { connect } from 'react-redux';
 import * as actionCreators from '../store/actions/index';
 
 class SubMenu extends Component {
-  constructor( props ) {
-    super( props );
-    this.state = {
-      style: classes.tier2
-    };
+  componentDidMount() {
+    if(this.props.index===1) {
+      this.button.style.color = 'white';
+    }
   }
 
   clicked =()=> {
-    console.log("INSIDE SUBMENU CLICKED");
     this.props.showPopUp();
 
     if(this.props.index===0) {
       this.props.adjustRight(true);
-      this.props.setSubMenu(this.props.deck.id);
+      this.props.setSubMenu(Math.abs(this.props.deck.id-this.props.deckLength));
     }
     else if(this.props.index===2) {
       this.props.adjustRight(false);
-      this.props.setSubMenu(this.props.deck.id);
+      this.props.setSubMenu(Math.abs(this.props.deck.id-this.props.deckLength));
     }
     else {
-      this.props.setSubMenu(this.props.deck.id);
+      this.props.setSubMenu(Math.abs(this.props.deck.id-this.props.deckLength));
       this.button.style.color = 'white';
     }
   }
 
   render() {
     return (
-      <button ref={(el) => this.button = el} onClick={()=>this.clicked()} className={this.props.style}>
+      <button ref={(el) => this.button = el} onClick={()=>this.clicked()} className={this.props.style} >
         {this.props.deck.name.split("_").join(" ")}
       </button>
     );
