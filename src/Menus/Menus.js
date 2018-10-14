@@ -115,17 +115,26 @@ class Menus extends Component {
       this.adjustTier1();
     }
 
-    this.setState({packStatus: ((this.props.deckIndex+1)/this.state.list.length)*100});
   }
 
   shouldComponentUpdate(nextProps,nextState) {
     if(this.props.showTier !== nextProps.showTier) {
+      console.log("SHOW_TIER, shouldComponentUpdate");
       return true;
     }
     if(this.props.deckIndex !== nextProps.deckIndex) {
-      return true;
+      //this.setState({packStatus: ((this.props.deckIndex+1)/this.state.list.length)*100});
+      console.log("deckIndex, shouldComponentUpdate");
+      if(this.props.showTier === 2) {
+        this.slider.slickGoTo(nextProps.deckIndex);
+        return false;
+      }
+      else {
+        return true;
+      }
     }
-    if(this.state.list !== nextState.list) {
+    if(this.state.list !== nextState.list && this.props.showTier !==2 ) {
+      console.log("list, shouldComponentUpdate");
       return true;
     }
 
@@ -246,6 +255,9 @@ class Menus extends Component {
     this.setState({list:list});
   }
 
+  centerDeck = (deckIndex)=> {
+    this.slider.slickGoTo(deckIndex);
+  }
   render() {
     console.log("IN A MENU.js RENDER ");
     let subMenus,tier2Style,settings;
@@ -258,6 +270,7 @@ class Menus extends Component {
                       key={index}
                       index={index}
                       deckLength={this.state.origList.length-1}
+                      centerDeck = {this.centerDeck}
                       />
                   </Link>
       });

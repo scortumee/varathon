@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import './Main.css';
 import Popup from 'reactjs-popup';
 import Carousel from 'nuka-carousel';
+import Slider from "react-slick";
 import {slide as Menu} from 'react-burger-menu';
 import MetaTags from 'react-meta-tags';
 
@@ -16,6 +17,34 @@ import starter from '../assets/starter.png';
 import structure from '../assets/structure.png';
 
 import LatestDecks from './Carousel/Entry';
+import Feedback from '../assets/feedback/Feedback';
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style}}
+      onClick={onClick}
+    >
+      <img src={require("../assets/right-arrow.svg") } alt="left"/>
+    </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{ ...style}}
+      onClick={onClick}
+    >
+      <img src={require("../assets/left-arrow.svg") } alt="left"/>
+    </div>
+  );
+}
+
 
 class App extends Component {
   constructor( props ) {
@@ -35,6 +64,15 @@ class App extends Component {
   }
 
   render() {
+    let settings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
+    };
     return (
       <div>
         <MetaTags>
@@ -213,20 +251,7 @@ class App extends Component {
 
 
           <div className='carousel'>
-            <Carousel
-              autoplay={true}
-              wrapAround={true}
-              renderCenterLeftControls={({ previousSlide }) => (
-                <div onClick={previousSlide} style={{color:'white'}}>
-                  <img src ={require('../assets/leftArrow.png')}/>
-                </div>
-              )}
-              renderCenterRightControls={({ nextSlide }) => (
-                <div onClick={nextSlide} style={{color:'white'}}>
-                  <img src ={require('../assets/rightArrow.png')}/>
-                </div>
-                )}
-            >
+            <Slider {...settings}>
             <Link to={{
              pathname: '/booster-packs',
              title: 'Booster Pack',
@@ -253,13 +278,14 @@ class App extends Component {
                }} style={{ textDecoration: 'none' }}><div className="container">
                   <img src={starter} alt="starter" className="stretch"/>
               </div> </Link>
-            </Carousel>
-
+            </Slider>
           </div>
+
           {this.state.showCarousel ?
               <LatestDecks/>
             :null
           }
+          <Feedback />
         </div>
     );
   }

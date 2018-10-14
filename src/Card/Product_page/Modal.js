@@ -31,9 +31,7 @@ class Modal extends PureComponent{
 
 
                    <div className="content">
-                   <div className="colmn">
-                   {details['large image']==='NULL'?<img src={this.props.cardimage}/>:<Largeimg url={details['large image']}/>}
-                   </div>
+                      {details['large image']==='NULL'?<img src={this.props.cardimage}/>:<Largeimg url={details['large image']}/>}
                    <Ebaytable keyword={details['set number']}/>
 
 

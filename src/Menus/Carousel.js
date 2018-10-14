@@ -8,28 +8,30 @@ class Carousel extends Component {
   constructor( props ) {
     super( props );
     this.state = {
-      style: classes.tier2
+
     };
+  }
+
+  shouldComponentUpdate(nextProps,nextState) {
+    if(this.props.deckIndex !==nextProps.deckIndex) {
+      if(nextProps.deckIndex === this.props.index) {
+        this.button.style.color='white';
+      }
+      else {
+        this.button.style.color='#909296';
+      }
+    }
+    return false;
   }
 
   clicked =()=> {
     this.props.showPopUp();
-
+    this.props.centerDeck(Math.abs(this.props.deck.id-this.props.deckLength));
     this.props.setSubMenu(Math.abs(this.props.deck.id-this.props.deckLength));
   }
 
   render() {
-    const divStyle = {
-      border: 'none',
-      backgroundColor: 'black',
-      fontSize: '36px',
-      fontFamily: 'D-DIN Condensed',
-      cursor: 'pointer',
-      position: 'relative',
-      display: 'inline-block',
-      textDecoration: 'none',
-      padding: '0 30px'
-    };
+    console.log("INSIDE CAROUSEL WHITE HIGHLIGHTED");
     return (
       <div ref={(el) => this.button = el} onClick={()=>this.clicked()} className='tier2Large'>
         {this.props.deck.name.split("_").join(" ")}
@@ -38,6 +40,12 @@ class Carousel extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    deckIndex: state.card.deckIndex
+  };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
       setSubMenu: (index) => dispatch(actionCreators.setSubMenu(index)),
@@ -45,4 +53,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(Carousel);
+export default connect(mapStateToProps, mapDispatchToProps)(Carousel);

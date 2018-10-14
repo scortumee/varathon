@@ -6,8 +6,8 @@ import GoogleTagManager from './assets/GoogleTagManager';
 import Main from './Main/Main';
 import './App.css';
 
-//import ReactGA from 'react-ga';
-//ReactGA.initialize('UA-124784036-1');
+import ReactGA from 'react-ga';
+
 //ReactGA.pageview(window.location.pathname + window.location.search);
 
 class App extends Component {
@@ -16,6 +16,11 @@ class App extends Component {
   }
 
   render() {
+    ReactGA.initialize('UA-124784036-1');
+    ReactGA.ga('require', 'GTM-55W86GH');
+
+
+
     return (
       <BrowserRouter>
         <div className='App'>

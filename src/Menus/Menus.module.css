@@ -65,8 +65,8 @@
 .tier2LargeWrap {
   /*overflow-x: hidden;
   display: inline-block;*/
-  max-width: 95vw;
-  height:42px;
+  max-width: 98vw;
+  height: 42px;
 }
 
 ::-webkit-scrollbar {

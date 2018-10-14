@@ -1,7 +1,10 @@
 .Card {
   width: 100%;
   text-align: center;
-  margin: 16px auto;
+  margin: 7.5px 7.5px;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -13,10 +16,25 @@
   .Card {
     width: 200px;
   }
+  .RedLine {
+    height: 301px;
+  }
+
+}
+
+.RedLine {
+  position: absolute;
+  z-index: 0;
+}
+
+.GreenLine {
+  position: absolute;
+  z-index: 0;
 }
 
 .Image {
   height: 100%;
+  opacity: 1;
   width: 100%;
 }
 

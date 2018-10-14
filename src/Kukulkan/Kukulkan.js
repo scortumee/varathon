@@ -13,89 +13,71 @@ import Menus from '../Menus/Menus';
 import deckNames from '../assets/deckNames';
 import MetaTags from 'react-meta-tags';
 import { Route } from 'react-router-dom';
+import Feedback from '../assets/feedback/Feedback';
 
 class Kukulkan extends Component {
   constructor( props ) {
     super( props );
-    let metaTitle,metaDesc,deckName,i,title,list,path;
+    let metaTitle,metaDesc,deckName,i,title,list,path,sliceVal;
     console.log('In Kukulkan-CONSTRUCTOR-props',this.props);
-    if(this.props.match.isExact) {
-      if(this.props.location.pathname === '/booster-packs') {
-        metaTitle='New Booster Packs Gallery| White Dragon Abyss';
-        metaDesc= 'Browse through White Dragon Abyss, Shadows in Valhalla, Cybernetic Horizon, Battles of Legend, Dark Saviors.';
-        title = 'Booster Pack';
-        list = deckNames.boosterPack;
-        path = this.props.match.path;
 
+    if(this.props.match.path === '/booster-packs') {
+      metaTitle='New Booster Packs Gallery| White Dragon Abyss';
+      metaDesc= 'Browse through White Dragon Abyss, Shadows in Valhalla, Cybernetic Horizon, Battles of Legend, Dark Saviors.';
+      title = 'Booster Pack';
+      list = deckNames.boosterPack;
+      path = this.props.match.path;
+      sliceVal = 15;
+    }
+    else if(this.props.match.path === '/starter-decks') {
+      metaTitle='New Starter Decks| Codebreaker';
+      metaDesc='Other Starters include Link Strike, Yuya, and Saber Force.';
+      title = 'Starter Deck';
+      list = deckNames.starterDeck;
+      path = this.props.match.path;
+      sliceVal = 15;
+    }
+    else if(this.props.match.path === '/structure-decks') {
+      metaTitle='New Structure Deck Gallery| Powercode Link';
+      metaDesc='Other Structures include Lair of Darkness, Wave of Light, and Cyberse Link.';
+      title = 'Structure Deck'
+      list = deckNames.structureDeck;
+      path = this.props.match.path;
+      sliceVal = 17;
+    }
+
+    if(this.props.match.isExact) {
+      if(this.props.location.title ===undefined) {
+        if(this.props.category.title !==0) {
+          this.props.loadFirst10(this.props.category.title, this.props.category.list,0);
+        }
+        else {
+          this.props.loadFirst10(title,list,0);
+        }
       }
-      else if(this.props.location.pathname === '/starter-decks') {
-        metaTitle='New Starter Decks| Codebreaker';
-        metaDesc='Other Starters include Link Strike, Yuya, and Saber Force.';
-        title = 'Starter Deck';
-        list = deckNames.starterDeck;
-        path = this.props.match.path;
+      else {
+        if(this.props.location.deckIndex === undefined) {
+          //let i;
+          for(i=0;i<this.props.location.list.length; i++) {
+            if(this.props.location.deckName === this.props.location.list[i].name) {
+              this.props.loadFirst10(this.props.location.title, this.props.location.list,i);
+              console.log('LOADED FIRST_10');
+              break;
+            }
+          }
+        }
+        else {
+          this.props.loadFirst10(this.props.location.title, this.props.location.list, this.props.location.deckIndex);
+        }
       }
-      else if(this.props.location.pathname === '/structure-decks') {
-        metaTitle='New Structure Deck Gallery| Powercode Link';
-        metaDesc='Other Structures include Lair of Darkness, Wave of Light, and Cyberse Link.';
-        title = 'Structure Deck'
-        list = deckNames.structureDeck;
-        path = this.props.match.path;
-      }
-      /*else if(this.props.location.pathname === '/home') {
-        metaTitle='New Starter Decks| Codebreaker';
-        metaDesc='Other Starters include Link Strike, Yuya, and Saber Force.';
-        title = 'Starter Deck';
-        list = deckNames.starterDeck;
-        path = this.props.match.path;
-        this.props.toggleMenu(-1);
-      }*/
     }
     else {
-      if(this.props.match.path === '/booster-packs') {
-        metaTitle='New Booster Packs Gallery| White Dragon Abyss';
-        metaDesc= 'Browse through White Dragon Abyss, Shadows in Valhalla, Cybernetic Horizon, Battles of Legend, Dark Saviors.';
-        deckName = this.props.location.pathname.slice(15);
-        title = 'Booster Pack';
-        list = deckNames.boosterPack;
-        path = this.props.match.path;
-
-        for(i=0;i<deckNames.boosterPack.length; i++) {
-          if(deckName === deckNames.boosterPack[i].name) {
-            this.props.loadFirst10(title, list,i);
-            console.log('LOADED FIRST_10');
-            break;
-          }
-        }
-      }
-      else if(this.props.match.path === '/starter-decks') {
-        metaTitle='New Starter Decks| Codebreaker';
-        metaDesc='Other Starters include Link Strike, Yuya, and Saber Force.';
-        deckName = this.props.location.pathname.slice(15);
-        title = 'Starter Deck';
-        list = deckNames.starterDeck;
-        path = this.props.match.path;
-
-        for(i=0;i<deckNames.starterDeck.length; i++) {
-          if(deckName === deckNames.starterDeck[i].name) {
-            this.props.loadFirst10(title, deckNames.starterDeck,i);
-            break;
-          }
-        }
-      }
-      else if(this.props.match.path === '/structure-decks') {
-        metaTitle='New Structure Deck Gallery| Powercode Link';
-        metaDesc='Other Structures include Lair of Darkness, Wave of Light, and Cyberse Link.';
-        deckName = this.props.location.pathname.slice(17);
-        title = 'Structure Deck'
-        list = deckNames.structureDeck;
-        path = this.props.match.path;
-
-        for(i=0;i<deckNames.structureDeck.length; i++) {
-          if(deckName === deckNames.structureDeck[i].name) {
-            this.props.loadFirst10(title, deckNames.structureDeck,i);
-            break;
-          }
+      deckName = this.props.location.pathname.slice(sliceVal);
+      for(i=0;i<list.length; i++) {
+        if(deckName === list[i].name) {
+          this.props.loadFirst10(title, list,i);
+          console.log('LOADED FIRST_10');
+          break;
         }
       }
     }
@@ -116,31 +98,7 @@ class Kukulkan extends Component {
     };
   }
   componentDidMount() {
-    //this.props.setCategory(this.props.location.title, this.props.location.list);
-    console.log(this.props);
-    if(this.props.location.title ===undefined) {
-      if(this.props.category.title !==0) {
-        this.props.loadFirst10(this.props.category.title, this.props.category.list,0);
-      }
-      else {
-        this.props.loadFirst10(this.state.title, this.state.list,0);
-      }
-    }
-    else {
-      if(this.props.location.deckIndex === undefined) {
-        let i;
-        for(i=0;i<this.props.location.list.length; i++) {
-          if(this.props.location.deckName === this.props.location.list[i].name) {
-            this.props.loadFirst10(this.props.location.title, this.props.location.list,i);
-            console.log('LOADED FIRST_10');
-            break;
-          }
-        }
-      }
-      else {
-        this.props.loadFirst10(this.props.location.title, this.props.location.list, this.props.location.deckIndex);
-      }
-    }
+
   }
 
   componentWillUnmount() {
@@ -210,8 +168,8 @@ class Kukulkan extends Component {
         <Route path="/starter-decks/:deckName" component={console.log('')}/>
         <Route path="/structure-decks/:deckName" component={console.log('')}/>
 
-        <div>
-        <FlexView>
+        <div style={{alignItems: 'center', marginTop:'16px'}}>
+        <FlexView hAlignContent='center'>
           <Card image = {this.props.pics[0]}/>
           <Card image = {this.props.pics[1]}/>
           <Card image = {this.props.pics[2]}/>
@@ -219,7 +177,7 @@ class Kukulkan extends Component {
           <Card image = {this.props.pics[4]}/>
         </FlexView>
 
-        <FlexView>
+        <FlexView hAlignContent='center'>
           <Card image = {this.props.pics[9]}/>
           <Card image = {this.props.pics[8]}/>
           <Card image = {this.props.pics[7]}/>
@@ -247,7 +205,7 @@ class Kukulkan extends Component {
             />
           </FlexView>
         }
-
+        <div style={{float:'left'}}><Feedback/></div>
         <Menus
           currentX={this.props.currentIndex}
           totalX={this.props.mainIndex}

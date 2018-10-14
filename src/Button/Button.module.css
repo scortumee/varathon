@@ -103,6 +103,37 @@
   background-color: transparent;
   /*clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);*/
 }
+/************************/
+.capsule {
+  height: 80px;
+  width: 500px;
+  background-color: #cccfd1;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 40px;
+  align-items: center;
+}
+
+.bigCircle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: purple;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  cursor: pointer;
+}
+
+.text {
+  font-family: 'Roboto';
+  align-items: center;
+}
+
+.textHide {
+  font-family: 'Roboto';
+  align-items: center;
+  color: #cccfd1;
+}
+
 /*.triangle:hover {
   border-color: #f442a7 transparent transparent  transparent;
 }*/

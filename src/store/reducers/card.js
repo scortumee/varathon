@@ -128,16 +128,16 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_DEFAULT: {
       return {
         pic: [
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic},
-          {img: data.defPic}
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0},
+          {img: data.defPic, detail:0}
         ],
         index: -1,
         index1: -1,
@@ -159,11 +159,12 @@ const reducer = (state = initialState, action) => {
         });
       }
       return {
+        ...state,
         pic: newState,
         index: 9,
         index1: 9,
         mainIndex: action.value.length,
-        deckIndex: action.deckIndex,
+        //deckIndex: action.deckIndex,
         firstTime:true,
         render: true
       }

@@ -244,3 +244,7 @@
       <img src={starter} alt="starter" className="stretch"/>
   </div> </Link>
 </Carousel>
+
+{/*<img src ={require('../assets/tenor.gif')} style={{float: 'left'}} height='50'/>*/}
+
+<img className ={classes.Pussy} src={pussy}/>
