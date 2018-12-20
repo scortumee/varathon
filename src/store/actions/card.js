@@ -51,7 +51,7 @@ export const renderFirst10 = (value,detail,deckIndex) => {
   };
 };
 
-export const updateNext = () => {
+/*export const updateNext = () => {
   return (dispatch, getState) => {
 
     const {index1, mainIndex, render} = getState().card;
@@ -83,9 +83,9 @@ export const updateNext = () => {
     }
 
   };
-};
+};*/
 
-export const updatePrev = () => {
+/*export const updatePrev = () => {
   return (dispatch,getState) => {
     let {index1, mainIndex, index, render} = getState().card;
 
@@ -111,7 +111,7 @@ export const updatePrev = () => {
         dispatch(switchPrev());
 
         dispatch(clearAndContinue(getState().card.mainIndex+9, index));
-        //setTimeout( ()=> {dispatch(hidePopUp());}, 1500);*/
+        //setTimeout( ()=> {dispatch(hidePopUp());}, 1500);
       }
       else if(index1 === -1) {
 
@@ -132,7 +132,7 @@ export const updatePrev = () => {
       }
     }
   };
-};
+};*/
 
 export const updateIndex = (mainIndex,deckIndex) => {
   return {
@@ -168,8 +168,8 @@ export const storePrevReserve = (value,detail, length) => {
     length: length
   };
 };
-
-export const fetchForReserve = (deckValue) => {
+  // this is for fetching either previous or next deck, a function inside fetchData
+/*export const fetchForReserve = (deckValue) => {
   return (dispatch,getState) => {
     const {deckIndex} = getState().card;
     const {title,list} = getState().cardReserve.currentCategory;
@@ -215,9 +215,9 @@ export const fetchForReserve = (deckValue) => {
         console.log(error);
       });
   };
-};
-
-export const fetchData = (deckValue) => {
+};*/
+  // this is for fetching selected deck and (previous and next decks) total:3
+/*export const fetchData = (deckValue) => {
   return (dispatch,getState) => {
     const {title,list} = getState().cardReserve.currentCategory;
 
@@ -226,10 +226,8 @@ export const fetchData = (deckValue) => {
     let categoryName = title;
 
     deckName = list[deckValue].name;
-    console.log(categoryName,deckName);
     axios.get(`/${categoryName}/${deckName}.json`)
       .then(response => {
-        console.log(response);
         let baseImages = response.data.cards.map((image, index) => {
           base64 = new Promise((resolve, reject) => {
              encode(image.image, { string: true }, (error, result) => {
@@ -238,7 +236,6 @@ export const fetchData = (deckValue) => {
              });
 
            });
-
            return base64;
         });
 
@@ -251,7 +248,7 @@ export const fetchData = (deckValue) => {
           else {
             dispatch(fetchForReserve(-1));
           }
-          dispatch(loadCurrent(baseResult,response.data.cards,response.data.cards.length));
+          dispatch(loadCurrent(baseResult,response.data.cards,deckName));
 
           dispatch(renderFirst10(baseResult,response.data.cards,deckValue));
           dispatch(fetchForReserve(1));
@@ -263,9 +260,48 @@ export const fetchData = (deckValue) => {
         console.log(error);
       });
   };
+};*/
+
+export const fetchSingle = (deckValue) => {
+  return(dispatch,getState) => {
+    const {title,list} = getState().cardReserve.currentCategory;
+
+    let base64;
+    let deckName=null;
+    let categoryName = title;
+
+    deckName = list[deckValue].name;
+    //console.log(categoryName,deckName);
+    axios.get(`/${categoryName}/${deckName}.json`)
+      .then(response => {
+        //console.log(response);
+        let baseImages = response.data.cards.map((image, index) => {
+          base64 = new Promise((resolve, reject) => {
+             encode(image.image, { string: true }, (error, result) => {
+               if (error) reject(error);
+               if (result) resolve(result);
+             });
+
+           });
+           return base64;
+        });
+
+        Promise.all(baseImages).then((baseResult)=> {
+          dispatch(actionCreators.setDefault(deckValue));
+          dispatch(loadCurrent(baseResult,response.data.cards,deckName));
+          dispatch(renderFirst10(baseResult,response.data.cards,deckValue));
+
+          setTimeout( ()=> {dispatch(actionCreators.hidePopUp());}, 500);
+        });
+      })
+
+      .catch(function (error) {
+        //console.log(error);
+      });
+  };
 };
 
-export const switchNext = () => {
+/*export const switchNext = () => {
   return (dispatch,getState) => {
     const {nextReserve,nextDetail, nextLength, currentCategory} = getState().cardReserve;
 
@@ -316,4 +352,4 @@ export const switchPrev = () => {
 
     dispatch(fetchForReserve(deckValue));
   };
-};
+};*/

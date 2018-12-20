@@ -9,6 +9,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import buttonReducer from './store/reducers/button';
 import cardReducer from './store/reducers/card';
+import deckReducer from './store/reducers/deck';
 import popupReducer from './store/reducers/popUp';
 import cardReserveReducer from './store/reducers/cardReserve';
 
@@ -16,10 +17,11 @@ const rootReducer = combineReducers({
   button: buttonReducer,
   card: cardReducer,
   popup: popupReducer,
-  cardReserve: cardReserveReducer
+  cardReserve: cardReserveReducer,
+  deck: deckReducer
 });
 
-const logger = store => {
+/*const logger = store => {
   return next => {
     return action => {
       console.log('Middleware Dispatching', action);
@@ -28,11 +30,11 @@ const logger = store => {
       return result;
     }
   }
-}
+}*/
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger, thunk)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();

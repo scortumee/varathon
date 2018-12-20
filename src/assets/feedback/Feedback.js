@@ -46,10 +46,6 @@ class Feedback extends PureComponent {
             )}
         </Popup>
       </div>
-
-
-
-
     );
 
 

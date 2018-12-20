@@ -23,30 +23,86 @@ export const setDefault = (value) => {
   };
 };
 
-export const setSubMenu = (index) => {
-  return (dispatch,getState) => {
-    /*let value=null;
-    let {list} = getState().cardReserve.currentCategory;
-    if(index===1) {
-      dispatch(setDefault(0));
-      value=list.length;
-    }
-    else if(index===0) {
-      dispatch(setDefault(list.length-1));
-      value=0;
-    }
-    else {
-      dispatch(setDefault(index-1));
-      value=-1;
-    }
-    console.log("IN A CATEGORY.js","index",index,"val",value);
-    dispatch(actionCreators.fetchForReserve(1));
-    dispatch(actionCreators.fetchForReserve(value));*/
-    dispatch(actionCreators.fetchData(index));
+export const unblock = () => {
+  return {
+    type: actionTypes.UNBLOCK
   };
 };
 
-export const setCategory = (title, list) => {
+export const updateNextCard = () => {
+  return (dispatch,getState) => {
+    const {index1, mainIndex, render} = getState().card;
+    const {currentReserve,currentDetail} = getState().button;
+
+    /*if(index1 === 9) {
+      dispatch(unblock());
+    }*/
+    if(render) {
+      if(index1 ===mainIndex-1) {
+        //dispatch(actionCreators.block());
+      }
+      else {
+        dispatch(actionCreators.goForward(currentReserve,currentDetail));
+      }
+    }
+  };
+};
+
+export const updatePrevCard = () => {
+  return (dispatch,getState) => {
+    const {index1, cardNum, render} = getState().card;
+    const {currentReserve,currentDetail} = getState().button;
+
+    /*if(index1 ===mainIndex-1) {
+      dispatch(unblock());
+    }*/
+    if(render) {
+      if(index1 === cardNum-1) {
+        //dispatch(actionCreators.block());
+      }
+      else {
+        dispatch(actionCreators.goBackward(currentReserve,currentDetail));
+      }
+    }
+  };
+};
+
+// this is for loading selected single deck
+export const loadSingleDeck =(title,list,deckIndex)=> {
+  return (dispatch) => {
+    dispatch(actionCreators.showPopUp());
+    dispatch(storeCategory(title,list));
+    dispatch(actionCreators.fetchSingle(deckIndex));
+  };
+};
+
+// when screen size changes, render cards (on device change)
+export const renderOnSwitch_Card = () => {
+  return (dispatch,getState) => {
+    const {currentReserve,currentDetail} = getState().button;
+    const {deckIndex} = getState().card;
+    dispatch(actionCreators.renderFirst10(currentReserve,currentDetail,deckIndex));
+  };
+};
+
+/*export const setSubMenu = (index) => {
+  return (dispatch,getState) => {
+    dispatch(actionCreators.fetchData(index));
+  };
+};*/
+
+// this is for loading Kukulkan with first ten pics are already displayed
+/*export const loadFirst10 = (title,list,deckIndex) => {
+  return (dispatch, getState) => {
+    dispatch(storeCategory(title,list));
+
+    dispatch(actionCreators.fetchData(deckIndex));
+  };
+};*/
+
+
+
+/*export const setCategory = (title, list) => {
   return (dispatch,getState) => {
     dispatch(storeCategory(title,list));
     dispatch(setDefault(-1));
@@ -54,13 +110,4 @@ export const setCategory = (title, list) => {
     dispatch(actionCreators.fetchForReserve(1));
     dispatch(actionCreators.fetchForReserve(list.length));
   };
-};
-
-// This is for loading Kukulkan with first ten pics are already displayed
-export const loadFirst10 = (title,list,deckIndex) => {
-  return (dispatch, getState) => {
-    dispatch(storeCategory(title,list));
-
-    dispatch(actionCreators.fetchData(deckIndex));
-  };
-};
+};*/

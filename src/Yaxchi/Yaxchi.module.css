@@ -1,0 +1,52 @@
+.Yaxchi {
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+  display:flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.titleText {
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .titleText {
+    font-size: 20px;
+  }
+}
+
+.title {
+  height: 8vh;
+  background-color: #F0F0F0;
+  align-items: center;
+  font-size: 35px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.body {
+  /*display: flex;
+  flex-direction: column;
+  justify-content: space-around;*/
+  /*min-height: 95vh;*/
+  align-items: center;
+  margin-top: 1%;
+  margin-bottom: 2%;
+}
+.cards {
+  align-items: center;
+  margin-top: 10px;
+}
+
+.backButton {
+  display:flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.burgerMenu {
+  cursor: pointer;
+  margin-right: 3%
+}

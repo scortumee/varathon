@@ -447,8 +447,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-      setCategory: (title,list) => dispatch(actionCreators.setCategory(title,list)),
-      loadFirst10:(title, list,deckIndex) => dispatch(actionCreators.loadFirst10(title, list, deckIndex)),
+      //setCategory: (title,list) => dispatch(actionCreators.setCategory(title,list)),
+      //loadFirst10:(title, list,deckIndex) => dispatch(actionCreators.loadFirst10(title, list, deckIndex)),
       showPopUp: () => dispatch(actionCreators.showPopUp()),
       toggleMenu: (value) => dispatch(actionCreators.toggleMenu(value))
     };

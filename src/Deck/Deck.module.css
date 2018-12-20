@@ -1,0 +1,82 @@
+.Deck {
+  /*width: 100%;*/
+  height: 36vh;
+  width: 21vh;
+  text-align: center;
+  margin: 0px 7.5px 0px 7.5px;
+  position: relative;
+  z-index: 0;
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+  background-color: transparent;
+  font-size: 14px;
+  /*display:flex;
+  flex-direction: column;*/
+}
+
+@media (max-width: 768px) {
+  .Deck {
+    height:45.76vw;
+    width:26vw;
+  }
+}
+
+.EndTag {
+  position: absolute;
+  z-index: 0;
+}
+
+.hoverField {
+  color: white;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+  font-size: 24px;
+}
+.button {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin: 5% 0;
+  padding: 5% 5%;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #008cba;
+  color: white;
+}
+
+.text{
+  text-decoration: none;
+  color:white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  margin: 5% 0;
+  padding: 5% 5%;
+}
+.text:hover{
+  background-color: #008cba;
+  /*#6d128e*/
+  color: white;
+}
+.Image {
+  height: 100%;
+  /*width: 100%;*/
+}
+.ImageDark {
+  height: 100%;
+  filter: brightness(0.3);
+}
+
+.ImageHalo {
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 40px 20px #CC0099;
+}

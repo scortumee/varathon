@@ -37,7 +37,7 @@ class SubMenu extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-      setSubMenu: (index) => dispatch(actionCreators.setSubMenu(index)),
+      //setSubMenu: (index) => dispatch(actionCreators.setSubMenu(index)),
       showPopUp: () => dispatch(actionCreators.showPopUp())
     };
 };

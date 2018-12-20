@@ -20,11 +20,25 @@ const initialState = {
   mainIndex:-1,
   deckIndex:-1,
   firstTime:true,
-  render: true
+  render: true,
+  cardNum:10
 }
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.SWITCH_MOBILE: {
+      let cardNum;
+      if(action.value) {
+        cardNum=6;
+      }
+      else {
+        cardNum=10;
+      }
+      return {
+        ...state,
+        cardNum:cardNum
+      };
+    }
     case actionTypes.BLOCK: {
       return {
         ...state,
@@ -32,8 +46,15 @@ const reducer = (state = initialState, action) => {
       };
     }
 
+    case actionTypes.UNBLOCK: {
+      return {
+        ...state,
+        render: true
+      };
+    }
+
     case actionTypes.CLEAR_CONTINUE: {
-      console.log('here');
+      //console.log('here');
       return {
         ...state,
         index1: action.index1,
@@ -47,11 +68,11 @@ const reducer = (state = initialState, action) => {
       let index1 = state.index1+1;
       let firstTime = state.firstTime;
 
-      if(index === 10){
+      if(index === state.cardNum){
         index = 0;
         firstTime = false;
       }
-
+      //console.log(state.index1);
       const newState = update(state.pic, {
           [index]: {
             img: {$set: action.value[index1]},
@@ -70,10 +91,10 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.GO_BACKWARD: {
       let index = state.index;
-      let index1 = state.index1-10;
+      let index1 = state.index1-state.cardNum;
 
       if(index===-1) {
-        index = 9;
+        index = state.cardNum-1;
       }
 
       const newState = update(state.pic, {
@@ -96,7 +117,7 @@ const reducer = (state = initialState, action) => {
       let index = state.index;
       let index1 = action.value.length+state.index1-10;
 
-      console.log("HEEEEEREEE",index1);
+      //console.log("HEEEEEREEE",index1);
 
       if(index === -1) {
         index = 9;
@@ -127,6 +148,7 @@ const reducer = (state = initialState, action) => {
 
     case actionTypes.SET_DEFAULT: {
       return {
+        ...state,
         pic: [
           {img: data.defPic, detail:0},
           {img: data.defPic, detail:0},
@@ -150,7 +172,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.RENDER_FIRST_10: {
       let i, newState;
       newState=state.pic;
-      for(i=0; i<10; i++) {
+      for(i=0; i<state.cardNum; i++) {
         newState = update(newState, {
             [i]: {
               img: {$set: action.value[i]},
@@ -161,8 +183,8 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         pic: newState,
-        index: 9,
-        index1: 9,
+        index: state.cardNum-1,
+        index1: state.cardNum-1,
         mainIndex: action.value.length,
         //deckIndex: action.deckIndex,
         firstTime:true,

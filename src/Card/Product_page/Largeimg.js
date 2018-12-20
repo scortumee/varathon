@@ -18,7 +18,7 @@ class Largeimg extends PureComponent{
         });
     }
     return(
-        this.state.largeImage===null?<img src={load} alt="loading..." />:<img width='60%' src={"data:image/jpeg;base64,"+this.state.largeImage}/>
+        this.state.largeImage===null?<img src={load} alt="loading..." />:<img width='100%' src={"data:image/jpeg;base64,"+this.state.largeImage}/>
     );
   }
 }

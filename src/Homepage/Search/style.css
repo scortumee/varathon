@@ -1,0 +1,43 @@
+.font{
+  font-family: 'D-DIN';
+}
+
+.heading{
+  font-size: 30px;
+  margin-top: 5%;
+  padding: 0;
+}
+.heading-mobile{
+  font-size: 22px;
+  margin-top: 5%;
+  padding: 0;
+}
+.sub-heading{
+  font-size: 14px;
+  margin: 0;
+  margin-bottom: 2%;
+}
+.sub-heading-mobile{
+  font-size: 12px;
+  list-style-type: disc;
+  list-style-position: inside;
+  text-indent: -1.5em;
+  padding-left: 2em;
+}
+.heading-price{
+  margin: 0;
+}
+.price-wrap{
+  margin-top: 5%;
+}
+.price-wrap-mobile{
+  margin-top: 10%;
+}
+.price{
+  font-size: 24px;
+  margin: 0;
+  padding: 0;
+}
+.see-all-desktop{
+  margin-top: 10%;
+}

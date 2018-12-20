@@ -6,9 +6,7 @@ import deckNames from '../assets/deckNames';
 import { Link } from 'react-router-dom';
 import './Main.css';
 import Popup from 'reactjs-popup';
-import Carousel from 'nuka-carousel';
 import Slider from "react-slick";
-import {slide as Menu} from 'react-burger-menu';
 import MetaTags from 'react-meta-tags';
 
 import logo from '../assets/varathonlogo.png';

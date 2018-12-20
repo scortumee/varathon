@@ -78,23 +78,7 @@
   margin-right: 10px;
 }
 
-.rlittleTriangle {
-  width: 25px;
-  height: 25px;
-  background-color: #cccfd1;
-  margin-left: 10px;
-  margin-right: 10px;
-  clip-path: polygon(100% 50%, 0 0, 0 100%);
-}
 
-.llittleTriangle {
-  width: 25px;
-  height: 25px;
-  background-color: #cccfd1;
-  margin-left: 10px;
-  margin-right: 10px;
-  clip-path: polygon(0 50%, 100% 100%, 100% 0);
-}
 .diamond {
   width: 500px;
   display: flex;
@@ -103,25 +87,65 @@
   background-color: transparent;
   /*clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);*/
 }
-/************************/
+/***********************************/
 .capsule {
   height: 80px;
-  width: 500px;
-  background-color: #cccfd1;
+  width: 320px;
   display: flex;
-  justify-content: space-evenly;
-  border-radius: 40px;
+  justify-content: space-between;
   align-items: center;
 }
 
+.lStick {
+  height: 20px;
+  width: 140px;
+  margin-left: 20px;
+  margin-right: -40px;
+  background-color: #F0F0F0;
+  cursor:pointer;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+}
+
+.rStick {
+  height: 20px;
+  width: 140px;
+  margin-right: 20px;
+  margin-left: -40px;
+  background-color: #008cba;
+  cursor:pointer;
+}
+.rlittleTriangle {
+  width: 60px;
+  height: 60px;
+  margin-left: -60px;
+  background-color: #008cba;
+  cursor:pointer;
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
+.llittleTriangle {
+  width: 60px;
+  height: 60px;
+  background-color: #F0F0F0;
+  clip-path: polygon(0 50%, 100% 100%, 100% 0);
+  position: absolute;
+  cursor:pointer;
+  transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
+}
 .bigCircle {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: purple;
+  background-color: #F0F0F0;
   transition: all .2s cubic-bezier(0, 1.26, .8, 1.28);
   cursor: pointer;
+  z-index: 1;
+  box-shadow: 0 0px 10px 4px rgba(0, 0, 0, 0.2),0 6px 5px 0 rgba(0, 0, 0, 0.19);
+  /* box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 1); */
+  /*margin-left: -40px;
+  margin-right: -40px; #6d128e*/
 }
+/*****************************************************/
 
 .text {
   font-family: 'Roboto';

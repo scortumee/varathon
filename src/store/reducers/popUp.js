@@ -2,7 +2,9 @@ import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
   showPopup: true,
-  popWallpaper: 0
+  packTitle:0,
+  packImages:0,
+  packDetail:0
 }
 
 const reducer = (state = initialState, action) => {
@@ -19,12 +21,15 @@ const reducer = (state = initialState, action) => {
         showPopup:false
       }
     }
-    case actionTypes.STORE_POP_UP: {
-      return {
+    case actionTypes.STORE_PACK: {
+      return{
         ...state,
-        popWallpaper: action.value
+        packTitle: action.title,
+        packImages: action.images,
+        packDetail: action.detail
       }
     }
+
     default:
       return state;
   }
